@@ -1,90 +1,96 @@
-import React, { useState } from 'react';
-import * as Yup from 'yup';
-import DynamicForm from '../FormComponets/DynamicForm';
-import GenericTable from '../Table/GenericTable';
-import Divider from '../ContainerAndDivider/Divider';
-import EditModal from '../Modal/EditModal';
-import { useCrud } from '../hooks/useCrud';
-import { useModal } from '../hooks/useModal';
-import { usePopup } from '../hooks/usePopup';
-import PopUpMessage from '../../shared/components/PopUpMessage/PopUpMessage';
+import React, { useState } from "react";
+import * as Yup from "yup";
+import FormTableManager from "../../shared/components/FormComponets/FormTableMannager";
+import EditModal from "../../shared/components/Modal/EditModal";
+import PopUpMessage from "../../shared/components/PopUpMessage/PopUpMessage";
+import { useCrud } from "../../hooks/useCrud";
+import { useModal } from "../../hooks/useModal";
+import { usePopup } from "../../hooks/UsePopUp";
+import { Container } from "../../shared/components";
 
-const RoleDashboard = () => {
+const RolesDashboard = () => {
   const { items, addItem, editItem, deleteItem } = useCrud();
-  const { isOpen: isEditOpen, openModal: openEditModal, closeModal: closeEditModal } = useModal();
+  const { isOpen, openModal, closeModal } = useModal();
   const { popup, showPopup, hidePopup } = usePopup();
 
   const [selectedItem, setSelectedItem] = useState(null);
 
   const formElements = [
     {
-      name: 'nombre',
-      label: 'Nombre del Rol',
-      type: 'text',
-      required: true,
+      type: "text",
+      name: "nombre",
+      label: "Nombre del Rol",
+      placeholder: "Ej: Administrador",
+    },
+    {
+      type: "button",
+      label: "Crear Rol",
+      submit: true,
     },
   ];
 
-  const initialValues = { nombre: '' };
+  const initialValues = {
+    nombre: "",
+  };
 
   const validationSchema = Yup.object({
-    nombre: Yup.string().required('El nombre es obligatorio'),
+    nombre: Yup.string().required("El nombre es obligatorio"),
   });
 
-  const handleSubmit = (values, { resetForm }) => {
-    try {
-      addItem(values);
-      showPopup('Rol creado correctamente', 'success');
-      resetForm();
-    } catch (error) {
-      showPopup('Error al crear el rol', 'error');
-    }
-  };
-
-  const handleEdit = (item) => {
-    setSelectedItem(item);
-    openEditModal();
-  };
-
-  const handleSaveEdit = (updatedValues) => {
-    editItem(selectedItem.id, updatedValues);
-  };
-
-  const handleDelete = (item) => {
-    const confirmDelete = window.confirm(`¿Eliminar el rol "${item.nombre}"?`);
-    if (confirmDelete) deleteItem(item.id);
-  };
-
   const columns = [
-    { key: 'id', label: 'ID' },
-    { key: 'nombre', label: 'Nombre' },
+    { key: "id", label: "ID" },
+    { key: "nombre", label: "Nombre" },
   ];
 
   const actions = [
     {
-      label: 'Editar',
-      onClick: handleEdit,
+      label: "Editar",
+      onClick: (item) => {
+        setSelectedItem(item);
+        openModal();
+      },
     },
     {
-      label: 'Eliminar',
-      onClick: handleDelete,
+      label: "Eliminar",
+      onClick: (item, items, setItems) => {
+        if (window.confirm(`¿Eliminar el rol "${item.nombre}"?`)) {
+          const actualizados = items.filter((i) => i.id !== item.id);
+          setItems(actualizados);
+          showPopup("Rol eliminado correctamente", "success");
+        }
+      },
     },
   ];
 
-  return (
-    <div style={{ maxWidth: '800px', margin: '0 auto', padding: '2rem' }}>
-      <h2>Formulario de creación de rol</h2>
+  const handleSubmit = (values, { resetForm, setItems }) => {
+    try {
+      const nuevoItem = addItem(values);
+      setItems([...items, nuevoItem]);
+      showPopup("Rol creado correctamente", "success");
+      resetForm();
+    } catch (error) {
+      showPopup("Error al crear el rol", "error");
+    }
+  };
 
-      <DynamicForm
-        elements={formElements}
+  const handleSaveEdit = (updatedValues) => {
+    editItem(selectedItem.id, updatedValues);
+    showPopup("Rol editado correctamente", "success");
+    closeModal();
+  };
+
+  return (
+    <Container>
+      <FormTableManager
+        title="Gestión de Roles"
+        formElements={formElements}
         initialValues={initialValues}
         validationSchema={validationSchema}
+        columns={columns}
+        actions={actions}
+        keyField="id"
         onSubmit={handleSubmit}
       />
-
-      <button type="submit" style={{ marginTop: '1rem' }}>
-        Crear Rol
-      </button>
 
       {popup.show && (
         <PopUpMessage
@@ -94,27 +100,16 @@ const RoleDashboard = () => {
         />
       )}
 
-      <Divider />
-
-      <h2>Roles Registrados en el Sistema</h2>
-
-      <GenericTable
-        data={items}
-        columns={columns}
-        actions={actions}
-        keyField="id"
-      />
-
       <EditModal
-        isOpen={isEditOpen}
-        onClose={closeEditModal}
+        isOpen={isOpen}
+        onClose={closeModal}
         item={selectedItem}
         formElements={formElements}
         validationSchema={validationSchema}
         onSave={handleSaveEdit}
       />
-    </div>
+    </Container>
   );
 };
 
-export default RoleDashboard;
+export default RolesDashboard;
