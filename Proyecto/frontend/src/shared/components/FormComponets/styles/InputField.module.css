@@ -1,0 +1,64 @@
+.inputField {
+  width: 100%;
+  max-width: 35.125rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.inputField input {
+  height: 2rem;
+  width: 100%;
+  max-width: 35.125rem;
+  font-size: 1.25rem;
+  padding: 0.5rem;
+  padding-right: 2.5rem;
+  box-sizing: border-box;
+}
+
+.inputField label {
+  width: 100%;
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.inputWrapper {
+  width: 100%;
+  position: relative;
+}
+
+
+.inputField .passwordToggle {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-45%);
+  cursor: pointer;
+  color: #555;
+}
+
+.forgotPassword {
+  width: 100%;
+  text-align: left;
+  margin-top: 0.25rem;
+}
+
+.forgotPassword a {
+  color: #616161;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.forgotPassword a:hover {
+  color: #000000;
+  cursor: pointer;
+}
+
+
+.error {
+  color: #ff0000;
+  margin-top: 0.25rem;
+  font-size: 0.9em;
+  width: 100%;
+  text-align: left;
+}

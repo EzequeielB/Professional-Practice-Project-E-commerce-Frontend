@@ -1,0 +1,20 @@
+.SideRegister {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3125rem; 
+}
+
+.SideRegister h2 {
+    color: #616161;
+}
+
+.SideRegister a {
+    color: #616161;
+    text-decoration: none;
+}
+
+.SideRegister a:hover {
+    color: #000000;
+    cursor: pointer;
+}
