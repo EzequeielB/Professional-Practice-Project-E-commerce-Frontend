@@ -1,95 +1,75 @@
 import React, { useState } from "react";
-import * as Yup from "yup";
 import FormTableManager from "../../shared/components/FormComponets/FormTableMannager";
 import EditModal from "../../shared/components/Modal/EditModal";
+import DeleteModal from "../../shared/components/Modal/DeleteModal";
 import PopUpMessage from "../../shared/components/PopUpMessage/PopUpMessage";
-import { useCrud } from "../../hooks/useCrud";
+import { initialValues } from "./validations/initialValues";
+import { validationSchema } from "./validations/validationSchema";
+import {
+  formElementsCreate,
+  formElementsEdit,
+  getHandleSubmit,
+  getActions,
+  columns,
+} from "./config";
 import { useModal } from "../../hooks/useModal";
-import { usePopup } from "../../hooks/UsePopUp";
+import { usePopup } from "../../hooks/usePopup";
+import { useCrud } from "../../hooks/UseCrud";
 import { Container } from "../../shared/components";
 
 const RolesDashboard = () => {
-  const { items, addItem, editItem, deleteItem } = useCrud();
-  const { isOpen, openModal, closeModal } = useModal();
+  const { items, setItems } = useCrud("id");
+  const {
+    isOpen: isEditOpen,
+    openModal: openEditModal,
+    closeModal: closeEditModal,
+  } = useModal();
+
+  const {
+    isOpen: isDeleteOpen,
+    openModal: openDeleteModal,
+    closeModal: closeDeleteModal,
+  } = useModal();
+
   const { popup, showPopup, hidePopup } = usePopup();
-
   const [selectedItem, setSelectedItem] = useState(null);
-
-  const formElements = [
-    {
-      type: "text",
-      name: "nombre",
-      label: "Nombre del Rol",
-      placeholder: "Ej: Administrador",
-    },
-    {
-      type: "button",
-      label: "Crear Rol",
-      submit: true,
-    },
-  ];
-
-  const initialValues = {
-    nombre: "",
-  };
-
-  const validationSchema = Yup.object({
-    nombre: Yup.string().required("El nombre es obligatorio"),
-  });
-
-  const columns = [
-    { key: "id", label: "ID" },
-    { key: "nombre", label: "Nombre" },
-  ];
-
-  const actions = [
-    {
-      label: "Editar",
-      onClick: (item) => {
-        setSelectedItem(item);
-        openModal();
-      },
-    },
-    {
-      label: "Eliminar",
-      onClick: (item, items, setItems) => {
-        if (window.confirm(`¿Eliminar el rol "${item.nombre}"?`)) {
-          const actualizados = items.filter((i) => i.id !== item.id);
-          setItems(actualizados);
-          showPopup("Rol eliminado correctamente", "success");
-        }
-      },
-    },
-  ];
-
-  const handleSubmit = (values, { resetForm, setItems }) => {
-    try {
-      const nuevoItem = addItem(values);
-      setItems([...items, nuevoItem]);
-      showPopup("Rol creado correctamente", "success");
-      resetForm();
-    } catch (error) {
-      showPopup("Error al crear el rol", "error");
-    }
-  };
+  const [itemToDelete, setItemToDelete] = useState(null);
 
   const handleSaveEdit = (updatedValues) => {
-    editItem(selectedItem.id, updatedValues);
+    const actualizados = items.map((i) =>
+      i.id === selectedItem.id ? { ...i, ...updatedValues } : i
+    );
+    setItems(actualizados);
     showPopup("Rol editado correctamente", "success");
-    closeModal();
+    closeEditModal();
+  };
+
+  const handleConfirmDelete = () => {
+    const actualizados = items.filter((i) => i.id !== itemToDelete.id);
+    setItems(actualizados);
+    showPopup("Rol eliminado correctamente", "success");
+    closeDeleteModal();
   };
 
   return (
     <Container>
       <FormTableManager
         title="Gestión de Roles"
-        formElements={formElements}
+        formElements={formElementsCreate}
         initialValues={initialValues}
         validationSchema={validationSchema}
         columns={columns}
-        actions={actions}
+        getActions={getActions({
+          setSelectedItem,
+          openModal: openEditModal,
+          showPopup,
+          openDeleteModal,
+          setItemToDelete,
+        })}
+        getHandleSubmit={getHandleSubmit({ showPopup })}
         keyField="id"
-        onSubmit={handleSubmit}
+        items={items}
+        setItems={setItems}
       />
 
       {popup.show && (
@@ -101,12 +81,20 @@ const RolesDashboard = () => {
       )}
 
       <EditModal
-        isOpen={isOpen}
-        onClose={closeModal}
+        isOpen={isEditOpen}
+        onClose={closeEditModal}
         item={selectedItem}
-        formElements={formElements}
+        formElements={formElementsEdit}
         validationSchema={validationSchema}
         onSave={handleSaveEdit}
+        entityLabel="rol"
+      />
+
+      <DeleteModal
+        isOpen={isDeleteOpen}
+        onClose={closeDeleteModal}
+        item={itemToDelete}
+        onConfirm={handleConfirmDelete}
       />
     </Container>
   );
