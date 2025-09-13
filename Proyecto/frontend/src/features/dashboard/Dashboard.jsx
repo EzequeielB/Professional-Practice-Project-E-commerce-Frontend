@@ -1,102 +1,105 @@
-import * as Yup from "yup";
+import React, { useState } from "react";
 import FormTableManager from "../../shared/components/FormComponets/FormTableMannager";
+import EditModal from "../../shared/components/Modal/EditModal";
+import DeleteModal from "../../shared/components/Modal/DeleteModal";
+import PopUpMessage from "../../shared/components/PopUpMessage/PopUpMessage";
+import { initialValues } from "./validations/initialValues";
+import { validationSchema } from "./validations/validationSchema";
+import {
+  formElementsCreate,
+  formElementsEdit,
+  getHandleSubmit,
+  getActions,
+  columns,
+} from "./config";
+import { useModal } from "../../hooks/useModal";
+import { usePopup } from "../../hooks/usePopup";
+import { useCrud } from "../../hooks/UseCrud";
 import { Container } from "../../shared/components";
 import styles from "./dashboard.module.css";
-const Dashboard = () => {
-  const formElements = [
-    {
-      type: "text",
-      name: "nombre",
-      label: "Nombre de la categoría",
-      placeholder: "Ej: Camisas",
-    },
-    {
-      type: "text",
-      name: "imagen",
-      label: "URL de la imagen",
-    },
-    {
-      type: "select",
-      name: "padre",
-      label: "Categoría Padre",
-      options: [
-        { value: "", label: "-- Ninguna --" },
-        { value: "Hombre", label: "Hombre" },
-        { value: "Mujer", label: "Mujer" },
-        { value: "Niños", label: "Niños" },
-      ],
-    },
-    {
-      type: "button",
-      label: "Crear categoría",
-      submit: true,
-    },
-  ];
 
-  const initialValues = {
-    nombre: "",
-    imagen: "",
-    padre: "",
+const CategoriesDashboard = () => {
+  const { items, setItems } = useCrud("id");
+
+  const {
+    isOpen: isEditOpen,
+    openModal: openEditModal,
+    closeModal: closeEditModal,
+  } = useModal();
+
+  const {
+    isOpen: isDeleteOpen,
+    openModal: openDeleteModal,
+    closeModal: closeDeleteModal,
+  } = useModal();
+
+  const { popup, showPopup, hidePopup } = usePopup();
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [itemToDelete, setItemToDelete] = useState(null);
+
+  const handleSaveEdit = (updatedValues) => {
+    const actualizados = items.map((i) =>
+      i.id === selectedItem.id ? { ...i, ...updatedValues } : i
+    );
+    setItems(actualizados);
+    showPopup("Categoría editada correctamente", "success");
+    closeEditModal();
   };
 
-  const validationSchema = Yup.object({
-    nombre: Yup.string().required("Requerido"),
-    imagen: Yup.string().url("Debe ser una URL válida").required("Requerido"),
-  });
-
-  const columns = [
-    { key: "id", label: "ID" },
-    { key: "nombre", label: "Nombre" },
-    { key: "padre", label: "Categoría Padre" },
-    {
-      key: "imagen",
-      label: "Imagen",
-      render: (item) => (
-        <img
-          src={item.imagen}
-          alt={item.nombre}
-          className={styles.imagenMiniatura}
-        />
-      ),
-    },
-  ];
-
-  const actions = [
-    {
-      label: "Editar",
-      onClick: (item, items, setItems) => {
-        const nuevoNombre = prompt("Nuevo nombre:", item.nombre);
-        if (nuevoNombre !== null && nuevoNombre.trim() !== "") {
-          const actualizados = items.map((i) =>
-            i.id === item.id ? { ...i, nombre: nuevoNombre } : i
-          );
-          setItems(actualizados);
-        }
-      },
-    },
-    {
-      label: "Eliminar",
-      onClick: (item, items, setItems) => {
-        if (window.confirm(`¿Eliminar "${item.nombre}"?`)) {
-          setItems(items.filter((i) => i.id !== item.id));
-        }
-      },
-    },
-  ];
+  const handleConfirmDelete = () => {
+    const actualizados = items.filter((i) => i.id !== itemToDelete.id);
+    setItems(actualizados);
+    showPopup("Categoría eliminada correctamente", "success");
+    closeDeleteModal();
+  };
 
   return (
     <Container>
       <FormTableManager
         title="Gestión de Categorías"
-        formElements={formElements}
+        formElements={formElementsCreate}
         initialValues={initialValues}
         validationSchema={validationSchema}
         columns={columns}
-        actions={actions}
+        getActions={getActions({
+          setSelectedItem,
+          openModal: openEditModal,
+          showPopup,
+          openDeleteModal,
+          setItemToDelete,
+        })}
+        getHandleSubmit={getHandleSubmit({ showPopup })}
         keyField="id"
+        items={items}
+        setItems={setItems}
+      />
+
+      {popup.show && (
+        <PopUpMessage
+          message={popup.message}
+          type={popup.type}
+          onClose={hidePopup}
+        />
+      )}
+
+      <EditModal
+        isOpen={isEditOpen}
+        onClose={closeEditModal}
+        item={selectedItem}
+        formElements={formElementsEdit}
+        validationSchema={validationSchema}
+        onSave={handleSaveEdit}
+        entityLabel="categoría"
+      />
+
+      <DeleteModal
+        isOpen={isDeleteOpen}
+        onClose={closeDeleteModal}
+        item={itemToDelete}
+        onConfirm={handleConfirmDelete}
       />
     </Container>
   );
 };
 
-export default Dashboard;
+export default CategoriesDashboard;

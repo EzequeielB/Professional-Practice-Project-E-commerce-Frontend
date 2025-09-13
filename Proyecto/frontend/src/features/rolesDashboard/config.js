@@ -34,12 +34,12 @@ export const columns = [
 export const getActions = ({
   setSelectedItem,
   openModal,
-  showPopup,
   openDeleteModal,
   setItemToDelete,
-}) => (items, setItems) => [
+}) => () => [
   {
     label: "Editar",
+    variant: "edit",
     onClick: (item) => {
       setSelectedItem(item);
       openModal();
@@ -47,6 +47,7 @@ export const getActions = ({
   },
   {
     label: "Eliminar",
+    variant: "delete",
     onClick: (item) => {
       setItemToDelete(item);
       openDeleteModal();

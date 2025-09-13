@@ -13,7 +13,6 @@ function EditModal({ isOpen, onClose, item, formElements, validationSchema, onSa
         validationSchema={validationSchema}
         onSubmit={(values) => {
           onSave(values);
-          onClose();
         }}
       />
     </Modal>
