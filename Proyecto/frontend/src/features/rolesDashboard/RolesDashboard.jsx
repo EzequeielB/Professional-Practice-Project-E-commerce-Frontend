@@ -16,11 +16,9 @@ import { useModal } from "../../hooks/useModal";
 import { usePopup } from "../../hooks/usePopup";
 import { useCrud } from "../../hooks/UseCrud";
 import { Container } from "../../shared/components";
-import styles from "./dashboard.module.css";
 
-const CategoriesDashboard = () => {
+const RolesDashboard = () => {
   const { items, setItems } = useCrud("id");
-
   const {
     isOpen: isEditOpen,
     openModal: openEditModal,
@@ -42,21 +40,21 @@ const CategoriesDashboard = () => {
       i.id === selectedItem.id ? { ...i, ...updatedValues } : i
     );
     setItems(actualizados);
-    showPopup("Categoría editada correctamente", "success");
+    showPopup("Rol editado correctamente", "success");
     closeEditModal();
   };
 
   const handleConfirmDelete = () => {
     const actualizados = items.filter((i) => i.id !== itemToDelete.id);
     setItems(actualizados);
-    showPopup("Categoría eliminada correctamente", "success");
+    showPopup("Rol eliminado correctamente", "success");
     closeDeleteModal();
   };
 
   return (
     <Container>
       <FormTableManager
-        title="Gestión de Categorías"
+        title="Gestión de Roles"
         formElements={formElementsCreate}
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -89,7 +87,7 @@ const CategoriesDashboard = () => {
         formElements={formElementsEdit}
         validationSchema={validationSchema}
         onSave={handleSaveEdit}
-        entityLabel="categoría"
+        entityLabel="rol"
       />
 
       <DeleteModal
@@ -102,4 +100,4 @@ const CategoriesDashboard = () => {
   );
 };
 
-export default CategoriesDashboard;
+export default RolesDashboard;

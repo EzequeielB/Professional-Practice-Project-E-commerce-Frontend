@@ -52,7 +52,7 @@ const Sidebar = () => {
           routes={[
             { to: '/usuarios/nuevo', label: 'Nuevo Usuario' },
             { to: '/usuarios', label: 'Ver Usuarios' },
-            { to: '/usuarios/roles', label: 'Gestionar Roles' },
+            { to: 'roles', label: 'Gestionar Roles' },
           ]}
         />
       </nav>
