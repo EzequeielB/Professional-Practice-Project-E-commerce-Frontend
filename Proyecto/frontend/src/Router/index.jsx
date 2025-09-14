@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router";
 import { RegisterScreen, DashboardScreen, LoginScreen, VerefyOTPscreen, ResetPasswordSceen, ChangePasswordScreen, RolesDashboardScreen } from "../Pages";
 import MainLayout from "../shared/components/layouts/MainLayout";
 import DashboardLayout from "../shared/components/layouts/DashboardLayout/DashboardLayout";
+import UsersDashboardScreen from "../Pages/usersDashboard/UsersDashboard";
 
 export const Router = createBrowserRouter([
   {
@@ -22,6 +23,7 @@ export const Router = createBrowserRouter([
     children: [
       { index: true, element: <DashboardScreen /> },
       { path: 'Roles', element: <RolesDashboardScreen /> },
+      { path: 'Users', element: <UsersDashboardScreen /> },
     ],
   },
 

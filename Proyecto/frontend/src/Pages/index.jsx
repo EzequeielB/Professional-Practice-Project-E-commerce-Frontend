@@ -4,6 +4,7 @@ import LoginScreen from "./login/LoginScreen"
 import ResetPasswordSceen from "./resetPassword/resetPasswordScreen"
 import VerefyOTPscreen from "./verefyOTP/VerefyOTPscreen"
 import ChangePasswordScreen from "./chagePassword/ChangePasswordScreen"
-import RolesDashboardScreen from "./rolesDashboard/RolesDashboardScree"
+import RolesDashboardScreen from "./rolesDashboard/RolesDashboardScreen"
+import UsersDashboard from "../features/usersDashboard/UsersDashboard"
 
-export {RegisterScreen, DashboardScreen, LoginScreen, ResetPasswordSceen, VerefyOTPscreen, ChangePasswordScreen, RolesDashboardScreen}
+export {RegisterScreen, DashboardScreen, LoginScreen, ResetPasswordSceen, VerefyOTPscreen, ChangePasswordScreen, RolesDashboardScreen, UsersDashboard}
