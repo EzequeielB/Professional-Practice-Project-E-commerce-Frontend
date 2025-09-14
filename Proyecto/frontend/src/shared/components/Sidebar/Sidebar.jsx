@@ -50,7 +50,7 @@ const Sidebar = () => {
           title="Usuarios"
           icon="👤"
           routes={[
-            { to: '/usuarios/nuevo', label: 'Nuevo Usuario' },
+            { to: 'users', label: 'Nuevo Usuario' },
             { to: '/usuarios', label: 'Ver Usuarios' },
             { to: 'roles', label: 'Gestionar Roles' },
           ]}
