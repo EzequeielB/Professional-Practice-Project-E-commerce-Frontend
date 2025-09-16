@@ -1,9 +1,8 @@
-// src/features/productsDashboard/ProductsDashboard.jsx
 import React, { useState } from "react";
-import FormTableManager from "../../shared/components/FormComponets/FormTableMannager";
-import EditModal from "../../shared/components/Modal/EditModal";
-import DeleteModal from "../../shared/components/Modal/DeleteModal";
-import PopUpMessage from "../../shared/components/PopUpMessage/PopUpMessage";
+import FormTableManager from "../../shared/components/FormComponets/FormTableMannager.jsx";
+import EditModal from "../../shared/components/Modal/EditModal.jsx";
+import DeleteModal from "../../shared/components/Modal/DeleteModal.jsx";
+import PopUpMessage from "../../shared/components/PopUpMessage/PopUpMessage.jsx";
 import { initialValues } from "./validations/initialValues";
 import { validationSchema } from "./validations/validationSchema.js";
 import {
@@ -17,8 +16,6 @@ import { useModal } from "../../hooks/useModal";
 import { usePopup } from "../../hooks/usePopup";
 import { useCrud } from "../../hooks/UseCrud";
 import { Container } from "../../shared/components";
-import styles from "./dashboard.module.css";
-
 const ProductsDashboard = () => {
   const { items, setItems } = useCrud("id");
 
