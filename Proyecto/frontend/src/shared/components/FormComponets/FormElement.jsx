@@ -12,7 +12,7 @@ const FormElement = ({ element }) => {
     case "email":
     case "number":
     case "tel":
-      return <InputField {...rest} />;
+      return <InputField type={type} {...rest} />;
 
     case "select":
       return <SelectField {...rest} />;
