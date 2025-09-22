@@ -14,6 +14,7 @@ const FormElement = ({ element }) => {
     case "email":
     case "number":
     case "tel":
+    case "date":
       return <InputField type={type} {...rest} />;
 
     case "select":

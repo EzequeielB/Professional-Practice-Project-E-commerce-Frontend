@@ -7,5 +7,6 @@ import ChangePasswordScreen from "./chagePassword/ChangePasswordScreen"
 import RolesDashboardScreen from "./rolesDashboard/RolesDashboardScreen"
 import UsersDashboardScreen from "./usersDashboard/UsersDashboard"
 import ProductsDashboardScreen from "./productsDashboard/ProductsDashboardScreen"
+import OffersDashboardScreen from "./offersDashboard/OffersDashboardScreen"
 
-export {RegisterScreen, DashboardScreen, LoginScreen, ResetPasswordSceen, VerefyOTPscreen, ChangePasswordScreen, RolesDashboardScreen, UsersDashboardScreen,ProductsDashboardScreen}
+export {RegisterScreen, DashboardScreen, LoginScreen, ResetPasswordSceen, VerefyOTPscreen, ChangePasswordScreen, RolesDashboardScreen, UsersDashboardScreen,ProductsDashboardScreen, OffersDashboardScreen}

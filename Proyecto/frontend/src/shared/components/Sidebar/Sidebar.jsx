@@ -34,7 +34,7 @@ const Sidebar = () => {
           title="Oferta"
           icon="💰"
           routes={[
-            { to: '/oferta/gestionar', label: 'Gestionar' },
+            { to: '/gestionar/ofertas', label: 'Gestionar' },
           ]}
         />
 
