@@ -154,7 +154,13 @@ export const columns = [
   },
 ];
 
-export const getActions = ({ setSelectedItem, openModal, openDeleteModal, setItemToDelete }) =>
+export const getActions = ({
+  setSelectedItem,
+  openModal,
+  openDeleteModal,
+  setItemToDelete,
+  openDetailsModal,
+}) =>
   (items, setItems) => [
     {
       label: "Editar",
@@ -172,7 +178,17 @@ export const getActions = ({ setSelectedItem, openModal, openDeleteModal, setIte
         openDeleteModal();
       },
     },
+    {
+      label: "Ver Detalles",
+      variant: "view",
+      onClick: (item) => {
+        setSelectedItem(item);
+        openDetailsModal();
+      },
+    },
   ];
+
+
 
 export const getHandleSubmit = ({ showPopup }) => (values, { resetForm, items, setItems }) => {
   try {

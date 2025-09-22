@@ -17,13 +17,13 @@ export const Router = createBrowserRouter([
   },
 
   {
-    path: '/categorias/gestionar',
+    path: '/gestionar',
     element: <DashboardLayout />,
     children: [
-      { index: true, element: <DashboardScreen /> },
-      { path: 'Roles', element: <RolesDashboardScreen /> },
-      { path: 'Users', element: <UsersDashboardScreen /> },
-      { path: 'Products', element: <ProductsDashboardScreen /> },
+      { path: 'categorias', element: <DashboardScreen /> },
+      { path: 'roles', element: <RolesDashboardScreen /> },
+      { path: 'usuarios', element: <UsersDashboardScreen /> },
+      { path: 'productos', element: <ProductsDashboardScreen /> },
     ],
   },
 

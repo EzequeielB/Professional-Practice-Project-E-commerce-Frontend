@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import FormTableManager from "../../shared/components/FormComponets/FormTableMannager.jsx";
-import EditModal from "../../shared/components/Modal/EditModal.jsx";
-import DeleteModal from "../../shared/components/Modal/DeleteModal.jsx";
-import PopUpMessage from "../../shared/components/PopUpMessage/PopUpMessage.jsx";
+import FormTableManager from "../../shared/components/FormComponets/FormTableMannager";
+import EditModal from "../../shared/components/Modal/EditModal";
+import DeleteModal from "../../shared/components/Modal/DeleteModal";
+import PopUpMessage from "../../shared/components/PopUpMessage/PopUpMessage";
+import DetailsModal from "../../shared/components/Modal/DetailsModal.jsx";
 import { initialValues } from "./validations/initialValues";
-import { validationSchema } from "./validations/validationSchema.js";
+import { validationSchema } from "./validations/validationSchema";
 import {
   formElementsCreate,
   formElementsEdit,
@@ -16,6 +17,7 @@ import { useModal } from "../../hooks/useModal";
 import { usePopup } from "../../hooks/usePopup";
 import { useCrud } from "../../hooks/UseCrud";
 import { Container } from "../../shared/components";
+
 const ProductsDashboard = () => {
   const { items, setItems } = useCrud("id");
 
@@ -29,6 +31,12 @@ const ProductsDashboard = () => {
     isOpen: isDeleteOpen,
     openModal: openDeleteModal,
     closeModal: closeDeleteModal,
+  } = useModal();
+
+  const {
+    isOpen: isDetailsOpen,
+    openModal: openDetailsModal,
+    closeModal: closeDetailsModal,
   } = useModal();
 
   const { popup, showPopup, hidePopup } = usePopup();
@@ -53,10 +61,8 @@ const ProductsDashboard = () => {
 
   return (
     <Container>
-      <h2>Gestión de Productos</h2>
-
       <FormTableManager
-        title="" /* ya tenemos el h2 arriba, evitar duplicado */
+        title="Gestión de Productos"
         formElements={formElementsCreate}
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -66,6 +72,7 @@ const ProductsDashboard = () => {
           openModal: openEditModal,
           openDeleteModal,
           setItemToDelete,
+          openDetailsModal,
         })}
         getHandleSubmit={getHandleSubmit({ showPopup })}
         keyField="id"
@@ -74,7 +81,11 @@ const ProductsDashboard = () => {
       />
 
       {popup.show && (
-        <PopUpMessage message={popup.message} type={popup.type} onClose={hidePopup} />
+        <PopUpMessage
+          message={popup.message}
+          type={popup.type}
+          onClose={hidePopup}
+        />
       )}
 
       <EditModal
@@ -92,6 +103,13 @@ const ProductsDashboard = () => {
         onClose={closeDeleteModal}
         item={itemToDelete}
         onConfirm={handleConfirmDelete}
+      />
+
+      <DetailsModal
+        isOpen={isDetailsOpen}
+        onClose={closeDetailsModal}
+        item={selectedItem}
+        entityLabel="producto"
       />
     </Container>
   );
