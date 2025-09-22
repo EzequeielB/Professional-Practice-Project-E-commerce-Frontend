@@ -17,7 +17,7 @@ const Sidebar = () => {
           title="Productos"
           icon="📦"
           routes={[
-            { to: '/gestionar/productos', label: 'Gestionar' },
+            { to: '/productos/gestionar', label: 'Gestionar' },
             { to: '/productos/stock', label: 'Stock' },
           ]}
         />
@@ -26,7 +26,7 @@ const Sidebar = () => {
           title="Categorías"
           icon="🗂️"
           routes={[
-            { to: '/gestionar/categorias', label: 'Gestionar' },
+            { to: '/categorias/gestionar', label: 'Gestionar' },
           ]}
         />
 
@@ -34,7 +34,7 @@ const Sidebar = () => {
           title="Oferta"
           icon="💰"
           routes={[
-            { to: '/gestionar/ofertas', label: 'Gestionar' },
+            { to: '/oferta/gestionar', label: 'Gestionar' },
           ]}
         />
 
@@ -50,9 +50,9 @@ const Sidebar = () => {
           title="Usuarios"
           icon="👤"
           routes={[
-            { to: '/gestionar/usuarios', label: 'Gestionar Usuarios' },
+            { to: '/usuarios/nuevo', label: 'Nuevo Usuario' },
             { to: '/usuarios', label: 'Ver Usuarios' },
-            { to: '/gestionar/roles', label: 'Gestionar Roles' },
+            { to: '/usuarios/roles', label: 'Gestionar Roles' },
           ]}
         />
       </nav>

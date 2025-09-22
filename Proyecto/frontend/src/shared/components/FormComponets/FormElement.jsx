@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
+import { useField } from "formik";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 import InputField from "./InputField";
 import SelectField from "./SelectField";
 import FormButton from "./FormButton";
-import Divider from "../ContainerAndDivider/Divider";
-import styles from "./styles/Form.module.css";
 
 const FormElement = ({ element }) => {
-  const { type, ...rest } = element;
+  const {type, ...rest} = element;
 
   switch (type) {
     case "text":
@@ -14,24 +14,13 @@ const FormElement = ({ element }) => {
     case "email":
     case "number":
     case "tel":
-    case "date":
-      return <InputField type={type} {...rest} />;
+      return <InputField{... element}/>;
 
     case "select":
-      return <SelectField {...rest} />;
+      return <SelectField{... rest}/>;
 
     case "button":
-      return <FormButton {...rest} />;
-
-    case "divider":
-      return <Divider />;
-
-    case "section":
-      return (
-        <div className={styles.formSectionHeader || ""} style={{ marginTop: "1rem", marginBottom: "0.5rem" }}>
-          <h3 style={{ margin: 0 }}>{element.label}</h3>
-        </div>
-      );
+      return <FormButton{... rest}/>;
 
     default:
       return null;
