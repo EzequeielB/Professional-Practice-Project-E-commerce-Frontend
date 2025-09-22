@@ -1,12 +1,7 @@
 import React from "react";
 import styles from "./Table.module.css";
 
-const GenericTable = ({
-  data = [],
-  columns,
-  actions = [],
-  keyField = "id",
-}) => {
+const GenericTable = ({ data = [], columns, actions = [], keyField = "id" }) => {
   if (!Array.isArray(data) || data.length === 0) {
     return <div>No hay registros.</div>;
   }
@@ -34,15 +29,27 @@ const GenericTable = ({
               ))}
               {actions.length > 0 && (
                 <td className={styles.acciones}>
-                  {actions.map((action, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => action.onClick(item)}
-                      className={styles[action.variant] || styles.defaultAction}
-                    >
-                      {action.label}
-                    </button>
-                  ))}
+                  {actions.map((action, idx) => {
+                    const variantClass =
+                      action.variant && typeof styles[action.variant] === "string"
+                        ? styles[action.variant]
+                        : styles.defaultAction || "";
+                    const safeCls = typeof variantClass === "string" ? variantClass : "";
+
+                    return (
+                      <button
+                        key={idx}
+                        onClick={() => action.onClick(item, data, (newItems) => {
+                          // legacy support: if action expects setItems callback
+                          if (typeof newItems === "function") newItems();
+                        })}
+                        className={safeCls}
+                        type="button"
+                      >
+                        {action.label}
+                      </button>
+                    );
+                  })}
                 </td>
               )}
             </tr>

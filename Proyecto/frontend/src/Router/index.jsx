@@ -1,8 +1,7 @@
 import { createBrowserRouter } from "react-router";
-import { RegisterScreen, DashboardScreen, LoginScreen, VerefyOTPscreen, ResetPasswordSceen, ChangePasswordScreen, RolesDashboardScreen } from "../Pages";
+import { RegisterScreen, DashboardScreen, LoginScreen, VerefyOTPscreen, ResetPasswordSceen, ChangePasswordScreen, RolesDashboardScreen, UsersDashboardScreen, ProductsDashboardScreen } from "../Pages";
 import MainLayout from "../shared/components/layouts/MainLayout";
 import DashboardLayout from "../shared/components/layouts/DashboardLayout/DashboardLayout";
-import UsersDashboardScreen from "../Pages/usersDashboard/UsersDashboard";
 
 export const Router = createBrowserRouter([
   {
@@ -18,12 +17,13 @@ export const Router = createBrowserRouter([
   },
 
   {
-    path: '/categorias/gestionar',
+    path: '/gestionar',
     element: <DashboardLayout />,
     children: [
-      { index: true, element: <DashboardScreen /> },
-      { path: 'Roles', element: <RolesDashboardScreen /> },
-      { path: 'Users', element: <UsersDashboardScreen /> },
+      { path: 'categorias', element: <DashboardScreen /> },
+      { path: 'roles', element: <RolesDashboardScreen /> },
+      { path: 'usuarios', element: <UsersDashboardScreen /> },
+      { path: 'productos', element: <ProductsDashboardScreen /> },
     ],
   },
 
