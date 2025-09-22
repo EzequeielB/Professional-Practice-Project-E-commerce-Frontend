@@ -9,11 +9,12 @@ const DynamicForm = ({ elements, onSubmit, initialValues, validationSchema }) =>
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
+      enableReinitialize={true} 
     >
       {() => (
         <Form className={styles.formStyle}>
           {elements.map((el, idx) => (
-            <FormElement key={idx} element={el} />
+            <FormElement key={el.name ?? idx} element={el} />
           ))}
         </Form>
       )}

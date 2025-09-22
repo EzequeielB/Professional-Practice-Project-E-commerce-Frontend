@@ -3,6 +3,7 @@ import FormTableManager from "../../shared/components/FormComponets/FormTableMan
 import EditModal from "../../shared/components/Modal/EditModal";
 import DeleteModal from "../../shared/components/Modal/DeleteModal";
 import PopUpMessage from "../../shared/components/PopUpMessage/PopUpMessage";
+import DetailsModal from "../../shared/components/Modal/DetailsModal.jsx";
 import { initialValues } from "./validations/initialValues";
 import { validationSchema } from "./validations/validationSchema";
 import {
@@ -16,9 +17,8 @@ import { useModal } from "../../hooks/useModal";
 import { usePopup } from "../../hooks/usePopup";
 import { useCrud } from "../../hooks/UseCrud";
 import { Container } from "../../shared/components";
-import styles from "./dashboard.module.css";
 
-const CategoriesDashboard = () => {
+const ProductsDashboard = () => {
   const { items, setItems } = useCrud("id");
 
   const {
@@ -33,6 +33,12 @@ const CategoriesDashboard = () => {
     closeModal: closeDeleteModal,
   } = useModal();
 
+  const {
+    isOpen: isDetailsOpen,
+    openModal: openDetailsModal,
+    closeModal: closeDetailsModal,
+  } = useModal();
+
   const { popup, showPopup, hidePopup } = usePopup();
   const [selectedItem, setSelectedItem] = useState(null);
   const [itemToDelete, setItemToDelete] = useState(null);
@@ -42,21 +48,21 @@ const CategoriesDashboard = () => {
       i.id === selectedItem.id ? { ...i, ...updatedValues } : i
     );
     setItems(actualizados);
-    showPopup("Categoría editada correctamente", "success");
+    showPopup("Producto editado correctamente", "success");
     closeEditModal();
   };
 
   const handleConfirmDelete = () => {
     const actualizados = items.filter((i) => i.id !== itemToDelete.id);
     setItems(actualizados);
-    showPopup("Categoría eliminada correctamente", "success");
+    showPopup("Producto eliminado correctamente", "success");
     closeDeleteModal();
   };
 
   return (
     <Container>
       <FormTableManager
-        title="Gestión de Categorías"
+        title="Gestión de Productos"
         formElements={formElementsCreate}
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -64,9 +70,9 @@ const CategoriesDashboard = () => {
         getActions={getActions({
           setSelectedItem,
           openModal: openEditModal,
-          showPopup,
           openDeleteModal,
           setItemToDelete,
+          openDetailsModal,
         })}
         getHandleSubmit={getHandleSubmit({ showPopup })}
         keyField="id"
@@ -89,7 +95,7 @@ const CategoriesDashboard = () => {
         formElements={formElementsEdit}
         validationSchema={validationSchema}
         onSave={handleSaveEdit}
-        entityLabel="categoría"
+        entityLabel="producto"
       />
 
       <DeleteModal
@@ -98,8 +104,15 @@ const CategoriesDashboard = () => {
         item={itemToDelete}
         onConfirm={handleConfirmDelete}
       />
+
+      <DetailsModal
+        isOpen={isDetailsOpen}
+        onClose={closeDetailsModal}
+        item={selectedItem}
+        entityLabel="producto"
+      />
     </Container>
   );
 };
 
-export default CategoriesDashboard;
+export default ProductsDashboard;

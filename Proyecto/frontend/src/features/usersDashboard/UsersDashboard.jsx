@@ -16,9 +16,8 @@ import { useModal } from "../../hooks/useModal";
 import { usePopup } from "../../hooks/usePopup";
 import { useCrud } from "../../hooks/UseCrud";
 import { Container } from "../../shared/components";
-import styles from "./dashboard.module.css";
 
-const CategoriesDashboard = () => {
+const UsersDashboard = () => {
   const { items, setItems } = useCrud("id");
 
   const {
@@ -42,21 +41,21 @@ const CategoriesDashboard = () => {
       i.id === selectedItem.id ? { ...i, ...updatedValues } : i
     );
     setItems(actualizados);
-    showPopup("Categoría editada correctamente", "success");
+    showPopup("Usuario editado correctamente", "success");
     closeEditModal();
   };
 
   const handleConfirmDelete = () => {
     const actualizados = items.filter((i) => i.id !== itemToDelete.id);
     setItems(actualizados);
-    showPopup("Categoría eliminada correctamente", "success");
+    showPopup("Usuario eliminado correctamente", "success");
     closeDeleteModal();
   };
 
   return (
     <Container>
       <FormTableManager
-        title="Gestión de Categorías"
+        title="Gestión de Usuarios"
         formElements={formElementsCreate}
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -64,7 +63,6 @@ const CategoriesDashboard = () => {
         getActions={getActions({
           setSelectedItem,
           openModal: openEditModal,
-          showPopup,
           openDeleteModal,
           setItemToDelete,
         })}
@@ -89,7 +87,7 @@ const CategoriesDashboard = () => {
         formElements={formElementsEdit}
         validationSchema={validationSchema}
         onSave={handleSaveEdit}
-        entityLabel="categoría"
+        entityLabel="usuario"
       />
 
       <DeleteModal
@@ -102,4 +100,4 @@ const CategoriesDashboard = () => {
   );
 };
 
-export default CategoriesDashboard;
+export default UsersDashboard;

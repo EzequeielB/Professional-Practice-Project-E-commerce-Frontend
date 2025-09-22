@@ -1,16 +1,22 @@
-import React from 'react';
-import styles from './Table.module.css'
+import React from "react";
+import styles from "./Table.module.css";
 
-const GenericTable = ({ data, columns, actions = [], keyField = 'id' }) => {
+const GenericTable = ({ data = [], columns, actions = [], keyField = "id" }) => {
+  if (!Array.isArray(data) || data.length === 0) {
+    return <div>No hay registros.</div>;
+  }
+
   return (
     <div>
       <table className={styles.table}>
         <thead>
           <tr>
             {columns.map((col) => (
-              <th key={col.key}>{col.label}</th>
+              <th key={col.key} scope="col">
+                {col.label}
+              </th>
             ))}
-            {actions.length > 0 && <th>Acciones</th>}
+            {actions.length > 0 && <th scope="col">Acciones</th>}
           </tr>
         </thead>
         <tbody>
@@ -23,15 +29,27 @@ const GenericTable = ({ data, columns, actions = [], keyField = 'id' }) => {
               ))}
               {actions.length > 0 && (
                 <td className={styles.acciones}>
-                  {actions.map((action, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => action.onClick(item, data, () => {})}
-                      className={styles[action.label.toLowerCase()]}
-                    >
-                      {action.label}
-                    </button>
-                  ))}
+                  {actions.map((action, idx) => {
+                    const variantClass =
+                      action.variant && typeof styles[action.variant] === "string"
+                        ? styles[action.variant]
+                        : styles.defaultAction || "";
+                    const safeCls = typeof variantClass === "string" ? variantClass : "";
+
+                    return (
+                      <button
+                        key={idx}
+                        onClick={() => action.onClick(item, data, (newItems) => {
+                          // legacy support: if action expects setItems callback
+                          if (typeof newItems === "function") newItems();
+                        })}
+                        className={safeCls}
+                        type="button"
+                      >
+                        {action.label}
+                      </button>
+                    );
+                  })}
                 </td>
               )}
             </tr>

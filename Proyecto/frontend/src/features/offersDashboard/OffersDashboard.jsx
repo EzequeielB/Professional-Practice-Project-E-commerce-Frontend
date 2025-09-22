@@ -16,9 +16,9 @@ import { useModal } from "../../hooks/useModal";
 import { usePopup } from "../../hooks/usePopup";
 import { useCrud } from "../../hooks/UseCrud";
 import { Container } from "../../shared/components";
-import styles from "./dashboard.module.css";
+import Divider from "../../shared/components/ContainerAndDivider/Divider"; // o la ruta que uses
 
-const CategoriesDashboard = () => {
+const OffersDashboard = () => {
   const { items, setItems } = useCrud("id");
 
   const {
@@ -42,21 +42,25 @@ const CategoriesDashboard = () => {
       i.id === selectedItem.id ? { ...i, ...updatedValues } : i
     );
     setItems(actualizados);
-    showPopup("Categoría editada correctamente", "success");
+    showPopup("Oferta editada correctamente", "success");
     closeEditModal();
   };
 
   const handleConfirmDelete = () => {
     const actualizados = items.filter((i) => i.id !== itemToDelete.id);
     setItems(actualizados);
-    showPopup("Categoría eliminada correctamente", "success");
+    showPopup("Oferta eliminada correctamente", "success");
     closeDeleteModal();
   };
 
   return (
     <Container>
+      <h2>Gestión de Ofertas</h2>
+
+      <Divider />
+
       <FormTableManager
-        title="Gestión de Categorías"
+        title="Gestión de Ofertas"
         formElements={formElementsCreate}
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -64,7 +68,6 @@ const CategoriesDashboard = () => {
         getActions={getActions({
           setSelectedItem,
           openModal: openEditModal,
-          showPopup,
           openDeleteModal,
           setItemToDelete,
         })}
@@ -74,12 +77,10 @@ const CategoriesDashboard = () => {
         setItems={setItems}
       />
 
+      <Divider />
+
       {popup.show && (
-        <PopUpMessage
-          message={popup.message}
-          type={popup.type}
-          onClose={hidePopup}
-        />
+        <PopUpMessage message={popup.message} type={popup.type} onClose={hidePopup} />
       )}
 
       <EditModal
@@ -89,7 +90,7 @@ const CategoriesDashboard = () => {
         formElements={formElementsEdit}
         validationSchema={validationSchema}
         onSave={handleSaveEdit}
-        entityLabel="categoría"
+        entityLabel="oferta"
       />
 
       <DeleteModal
@@ -102,4 +103,4 @@ const CategoriesDashboard = () => {
   );
 };
 
-export default CategoriesDashboard;
+export default OffersDashboard;
