@@ -56,13 +56,7 @@ export const getActions = ({ setSelectedItem, openModal, openDeleteModal, setIte
     },
   ];
 
-/**
- * getHandleSubmit: la firma es la misma que usás en RolesDashboard
- * values: valores del form, helpers incluyen resetForm
- * items, setItems vienen de FormTableManager (que le pasa items & setItems)
- */
 export const getHandleSubmit = ({ showPopup }) => (values, { resetForm, items, setItems }) => {
-  // crear objeto oferta (con conversión mínima)
   const nuevoItem = {
     id: items.length + 1,
     nombre: values.nombre,
