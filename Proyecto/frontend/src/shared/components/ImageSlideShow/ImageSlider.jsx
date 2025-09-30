@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Thumbnail from "./Thumbnail";
+import styles from "./ImageSlider.module.css";
 
 const ImageSlider = ({ imgs, showThumbnails = false }) => {
   const [index, setIndex] = useState(0);
@@ -12,14 +13,21 @@ const ImageSlider = ({ imgs, showThumbnails = false }) => {
   const prev = () => setIndex(index === 0 ? imgs.length - 1 : index - 1);
 
   return (
-    <div>
-      <img src={imgs[index]} alt="slider" width="400" />
-      <div>
-        <button onClick={prev}>Previous</button>
-        <button onClick={next}>Next</button>
+    <div className={styles.sliderContainer}>
+      <img src={imgs[index]} alt="slider" className={styles.sliderImage} />
+
+      <div className={styles.controls}>
+        <button className={styles.button} onClick={prev}>
+          Previous
+        </button>
+        <button className={styles.button} onClick={next}>
+          Next
+        </button>
       </div>
 
-      {showThumbnails && <Thumbnail arr={imgs} onSelect={setIndex} />}
+      {showThumbnails && (
+        <Thumbnail arr={imgs} currentIndex={index} onSelect={setIndex} />
+      )}
     </div>
   );
 };

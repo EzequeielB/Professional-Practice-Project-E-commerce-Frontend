@@ -1,18 +1,21 @@
-const Thumbnail = ({ arr, image }) => {
+import styles from "./ImageSlider.module.css";
+
+const Thumbnail = ({ arr, currentIndex, onSelect }) => {
   return (
-    <div className="thumbnails">
+    <div className={styles.thumbnails}>
       {arr.map((imgsrc, i) => (
         <img
           key={i}
-          height="50"
           src={imgsrc}
           alt={`thumbnail-${i}`}
-          onClick={() => image(i)}
-          style={{ cursor: "pointer", margin: "5px" }}
+          className={`${styles.thumbnail} ${
+            i === currentIndex ? styles.activeThumbnail : ""
+          }`}
+          onClick={() => onSelect(i)}
         />
       ))}
     </div>
   );
 };
 
-export default Thumbnail
+export default Thumbnail;
