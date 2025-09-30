@@ -16,7 +16,7 @@ import { useModal } from "../../hooks/useModal";
 import { usePopup } from "../../hooks/usePopup";
 import { useCrud } from "../../hooks/UseCrud";
 import { Container } from "../../shared/components";
-import Divider from "../../shared/components/ContainerAndDivider/Divider"; // o la ruta que uses
+import Divider from "../../shared/components/ContainerAndDivider/Divider";
 
 const OffersDashboard = () => {
   const { items, setItems } = useCrud("id");
@@ -54,52 +54,58 @@ const OffersDashboard = () => {
   };
 
   return (
-    <Container>
-      <h2>Gestión de Ofertas</h2>
+    <>
+      <Container>
+        <h2>Gestión de Ofertas</h2>
 
-      <Divider />
+        <Divider />
 
-      <FormTableManager
-        title="Gestión de Ofertas"
-        formElements={formElementsCreate}
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        columns={columns}
-        getActions={getActions({
-          setSelectedItem,
-          openModal: openEditModal,
-          openDeleteModal,
-          setItemToDelete,
-        })}
-        getHandleSubmit={getHandleSubmit({ showPopup })}
-        keyField="id"
-        items={items}
-        setItems={setItems}
-      />
+        <FormTableManager
+          title="Gestión de Ofertas"
+          formElements={formElementsCreate}
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          columns={columns}
+          getActions={getActions({
+            setSelectedItem,
+            openModal: openEditModal,
+            openDeleteModal,
+            setItemToDelete,
+          })}
+          getHandleSubmit={getHandleSubmit({ showPopup })}
+          keyField="id"
+          items={items}
+          setItems={setItems}
+        />
 
-      <Divider />
+        <Divider />
 
-      {popup.show && (
-        <PopUpMessage message={popup.message} type={popup.type} onClose={hidePopup} />
-      )}
+        {popup.show && (
+          <PopUpMessage
+            message={popup.message}
+            type={popup.type}
+            onClose={hidePopup}
+          />
+        )}
 
-      <EditModal
-        isOpen={isEditOpen}
-        onClose={closeEditModal}
-        item={selectedItem}
-        formElements={formElementsEdit}
-        validationSchema={validationSchema}
-        onSave={handleSaveEdit}
-        entityLabel="oferta"
-      />
+        <EditModal
+          isOpen={isEditOpen}
+          onClose={closeEditModal}
+          item={selectedItem}
+          formElements={formElementsEdit}
+          validationSchema={validationSchema}
+          onSave={handleSaveEdit}
+          entityLabel="oferta"
+        />
 
-      <DeleteModal
-        isOpen={isDeleteOpen}
-        onClose={closeDeleteModal}
-        item={itemToDelete}
-        onConfirm={handleConfirmDelete}
-      />
-    </Container>
+        <DeleteModal
+          isOpen={isDeleteOpen}
+          onClose={closeDeleteModal}
+          item={itemToDelete}
+          onConfirm={handleConfirmDelete}
+        />
+      </Container>
+    </>
   );
 };
 
