@@ -2,7 +2,7 @@ import React from "react";
 import InputField from "./InputField";
 import SelectField from "./SelectField";
 import FormButton from "./FormButton";
-import Divider from "../ContainerAndDivider/Divider";
+import Divider from "../Divider/Divider";
 import styles from "./styles/Form.module.css";
 
 const FormElement = ({ element }) => {

@@ -2,29 +2,30 @@ import { createBrowserRouter } from "react-router";
 import { RegisterScreen, DashboardScreen, LoginScreen, VerefyOTPscreen, ResetPasswordSceen, ChangePasswordScreen, RolesDashboardScreen, UsersDashboardScreen, ProductsDashboardScreen, OffersDashboardScreen } from "../Pages";
 import MainLayout from "../shared/components/layouts/MainLayout";
 import DashboardLayout from "../shared/components/layouts/DashboardLayout/DashboardLayout";
+import { ROUTES, SUB_ROUTES } from "./routesConfig";
 
 export const Router = createBrowserRouter([
   {
     path: '/',
     element: <MainLayout />,
     children: [
-      { path: 'register', element: <RegisterScreen /> },
-      { path: 'login', element: <LoginScreen /> },
-      { path: 'resetPassword', element:<ResetPasswordSceen/>},
-      { path: 'verefyOTP', element:<VerefyOTPscreen/>},
-      { path: 'changePassword', element:<ChangePasswordScreen/>},
+      { path: ROUTES.REGISTER, element: <RegisterScreen /> },
+      { path: ROUTES.LOGIN, element: <LoginScreen /> },
+      { path: ROUTES.RESET_PASSWORD, element:<ResetPasswordSceen/>},
+      { path: ROUTES.VERIFY_OTP, element:<VerefyOTPscreen/>},
+      { path: ROUTES.CHANGE_PASSWORD, element:<ChangePasswordScreen/>},
     ],
   },
 
   {
-    path: '/gestionar',
+    path: ROUTES.DASHBOARD,
     element: <DashboardLayout />,
     children: [
-      { path: 'categorias', element: <DashboardScreen /> },
-      { path: 'roles', element: <RolesDashboardScreen /> },
-      { path: 'usuarios', element: <UsersDashboardScreen /> },
-      { path: 'productos', element: <ProductsDashboardScreen /> },
-      { path: 'ofertas', element: <OffersDashboardScreen /> },
+      { path: SUB_ROUTES.DASHBOARD.CATEGORIES, element: <DashboardScreen /> },
+      { path: SUB_ROUTES.DASHBOARD.ROLES, element: <RolesDashboardScreen /> },
+      { path: SUB_ROUTES.DASHBOARD.USERS, element: <UsersDashboardScreen /> },
+      { path: SUB_ROUTES.DASHBOARD.PRODUCTS, element: <ProductsDashboardScreen /> },
+      { path: SUB_ROUTES.DASHBOARD.OFFERS, element: <OffersDashboardScreen /> },
     ],
   },
 

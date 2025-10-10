@@ -1,9 +1,7 @@
-import ProductsDashboard from "../../features/productsDashboard/ProductsDashboard"
+import ProductsDashboard from "../../features/productsDashboard/ProductsDashboard";
 
-function ProductsDashboardScreen(){
-    return(
-        <ProductsDashboard></ProductsDashboard>
-    )
+function ProductsDashboardScreen() {
+  return <ProductsDashboard />;
 }
 
-export default ProductsDashboardScreen
+export default ProductsDashboardScreen;

@@ -1,3 +1,5 @@
+import { ROUTES } from "../../Router/routesConfig";
+
 export const formElements = [
   {
     type: "email",
@@ -11,8 +13,7 @@ export const formElements = [
     label: "Contraseña",
     placeholder: "Ingresa tu contraseña",
     showForgotPassword: true,
-    forgotPasswordLink: "resetPassword"
-    
+    forgotPasswordLink: ROUTES.RESET_PASSWORD,
   },
 
   { type: "button", name: "Ingresar", label: "Ingresar", submit: true },

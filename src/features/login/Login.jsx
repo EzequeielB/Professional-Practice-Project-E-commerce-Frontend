@@ -1,10 +1,15 @@
-import { Container, DynamicForm } from "../../shared/components";
+import {
+  AuthRedirectPanel,
+  Container,
+  DynamicForm,
+  Divider,
+  Title,
+} from "../../shared/components";
 import "@fontsource/iceberg";
 import { initialValues } from "./validations/initialValues";
 import { validationSchema } from "./validations/validationSchema";
 import { formElements } from "./config";
-import styles from "./login.module.css";
-import Divider from "../../shared/components/ContainerAndDivider/Divider";
+import { ROUTES } from "../../Router/routesConfig";
 
 function Login() {
   const handleSubmit = (values) => {
@@ -12,6 +17,7 @@ function Login() {
   };
   return (
     <Container>
+      <Title title={"Login"} />
       <DynamicForm
         elements={formElements}
         initialValues={initialValues}
@@ -19,10 +25,11 @@ function Login() {
         onSubmit={handleSubmit}
       />
       <Divider />
-      <div className={styles.SideRegister}>
-        <h2>¿Aun no tienes cuenta?</h2>
-        <a href="/register">Registrate aquí</a>
-      </div>
+      <AuthRedirectPanel
+        text={"¿Aún no tienes cuenta?"}
+        linkPath={ROUTES.REGISTER}
+        linkText={"Registrate aquí"}
+      />
     </Container>
   );
 }

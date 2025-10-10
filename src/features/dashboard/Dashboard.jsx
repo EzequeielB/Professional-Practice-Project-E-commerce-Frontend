@@ -16,7 +16,6 @@ import { useModal } from "../../hooks/useModal";
 import { usePopup } from "../../hooks/usePopup";
 import { useCrud } from "../../hooks/UseCrud";
 import { Container } from "../../shared/components";
-import styles from "./dashboard.module.css";
 
 const CategoriesDashboard = () => {
   const { items, setItems } = useCrud("id");

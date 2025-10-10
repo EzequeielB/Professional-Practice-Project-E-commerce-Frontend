@@ -1,9 +1,7 @@
 import OffersDashboard from "../../features/offersDashboard/OffersDashboard";
 
-function OffersDashboardScreen(){
-    return(
-        <OffersDashboard></OffersDashboard>
-    )
+function OffersDashboardScreen() {
+  return <OffersDashboard />;
 }
 
-export default OffersDashboardScreen
+export default OffersDashboardScreen;

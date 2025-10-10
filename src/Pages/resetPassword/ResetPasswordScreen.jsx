@@ -1,10 +1,7 @@
-import ResetPassword from "../../features/resetPassword/resetPassword"
+import ResetPassword from "../../features/resetPassword/resetPassword";
 
-
-function ResetPasswordSceen(){
-    return(
-        <ResetPassword/>
-    )
+function ResetPasswordSceen() {
+  return <ResetPassword />;
 }
 
-export default ResetPasswordSceen
+export default ResetPasswordSceen;
