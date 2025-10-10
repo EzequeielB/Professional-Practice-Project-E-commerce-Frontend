@@ -13,15 +13,17 @@ const ProductCard = ({
 }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  const addFavorites="Agregar a favoritos"
-  const quitFavorites="Quitar de favoritos"
-  const [isFavoriteText, setIsFavoriteText]=useState(addFavorites);
+  const addFavorites = "Agregar a favoritos";
+  const quitFavorites = "Quitar de favoritos";
+  const [isFavoriteText, setIsFavoriteText] = useState(addFavorites);
 
   const handleClick = (e) => {
     e.stopPropagation();
-    setIsFavorite((prev) => !prev);
-    setIsFavorite? setIsFavoriteText(addFavorites) : setIsFavoriteText(quitFavorites)
-    
+    setIsFavorite((prev) => {
+      const Value = !prev;
+      setIsFavoriteText(Value ? quitFavorites : addFavorites);
+      return Value;
+    });
   };
 
   const renderIcon = () => {
