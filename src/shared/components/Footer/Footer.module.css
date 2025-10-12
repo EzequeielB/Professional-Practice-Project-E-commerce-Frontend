@@ -1,0 +1,71 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: #111;
+  color: #f5f5f5; 
+  width: 100%;
+  padding: 32px 40px;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+
+.columnsContainer {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  gap: 48px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.column h1 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #e0e0e0;
+}
+
+.column a {
+  text-decoration: none;
+  color: #ccc;
+  font-size: 14px;
+  transition: color 0.2s ease-in-out;
+}
+
+.column a:hover {
+  color: #fff;
+}
+
+.socialMediaContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.socialMediaContainer h1 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #e0e0e0;
+}
+
+.socialIcons {
+  display: flex;
+  gap: 16px;
+}
+
+.socialIcons a {
+  color: #ccc;
+  font-size: 22px;
+  transition: color 0.2s ease-in-out;
+}
+
+.socialIcons a:hover {
+  color: #4caf50;
+}
