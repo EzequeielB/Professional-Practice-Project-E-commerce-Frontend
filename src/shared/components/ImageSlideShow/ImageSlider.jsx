@@ -14,8 +14,8 @@ const ImageSlider = ({
   imgs,
   urls,
   showThumbnails = false,
-  showIndicator = true,
-  banner = true,
+  showIndicator = false,
+  banner = false,
 }) => {
   const [index, setIndex] = useState(0);
 
