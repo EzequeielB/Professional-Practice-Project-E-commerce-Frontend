@@ -45,7 +45,7 @@ const ProductCard = ({
         <p className={styles.productName}>{product}</p>
         <div className={styles.priceContainer}>
           <p className={styles.price}>{price}</p>
-          <p className={styles.discount}>{discount}</p>
+          {discount && <p className={styles.discount}>{discount}</p>}
         </div>
         <p className={styles.cuotas}>
           {nQuotas} cuotas sin interés de {quotas}
