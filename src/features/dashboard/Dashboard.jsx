@@ -8,7 +8,7 @@ import {
   getActions,
   getHandleSubmit,
 } from "./config";
-import { usePopup } from "../../shared/hooks/usePopup"; // si tenés un hook para mostrar notificaciones
+import { usePopup } from "../../hooks/UsePopUp";
 
 const Dashboard = () => {
   const [selectedItem, setSelectedItem] = useState(null);
