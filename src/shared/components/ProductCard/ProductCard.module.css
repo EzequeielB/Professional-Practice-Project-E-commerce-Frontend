@@ -1,0 +1,104 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 300px;
+  min-height: 420px;
+  padding: 20px;
+  gap: 16px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.container:hover {
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-radius: 6px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.container:hover .img {
+  transform: scale(1.02);
+}
+
+.description {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.productName {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 6px 0;
+  color: #333;
+}
+
+.priceContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+}
+
+.price {
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: 4px 0;
+  color: #000000ff;
+}
+
+.discount {
+  text-decoration: line-through;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 4px 0;
+  color: #615e5eff;
+}
+
+.cuotas {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 4px 0;
+  color: #666;
+}
+
+.favoriteBtn {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  background-color: #f8f8f8;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.favoriteBtn:hover {
+  background-color: #ffe6ea;
+  color: #d00;
+}
+
+.favoriteBtn svg {
+  font-size: 1.1rem;
+}
+
+.active {
+  background-color: #ffe6ea;
+  color: #d00;
+  border-color: #d00;
+}
