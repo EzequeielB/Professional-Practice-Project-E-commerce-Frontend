@@ -4,12 +4,13 @@ import { initialValues } from "./validations/initialValues";
 import {validationSchema} from "./validations/validationSchema"
 import { formElements } from "./config";
 import { useNavigate } from "react-router";
+import { ROUTES } from "../../Router/routesConfig";
 
 function VerefyOTP() {
   const navigate = useNavigate()
   const handleSubmit = (values) => {
     console.log("Datos del formulario:", values);
-    navigate("/changePassword")
+    navigate(ROUTES.CHANGE_PASSWORD)
   };
 
   return (

@@ -1,11 +1,7 @@
-import Dashboard from "../../features/dashboard/Dashboard"
+import Dashboard from "../../features/dashboard/Dashboard";
 
 function DashboardScreen() {
-  return (
-    <>
-    <Dashboard/>
-    </>
-  )
+  return <Dashboard />;
 }
 
-export default DashboardScreen
+export default DashboardScreen;

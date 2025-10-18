@@ -1,9 +1,7 @@
-import UsersDashboard from "../../features/usersDashboard/UsersDashboard"
+import UsersDashboard from "../../features/usersDashboard/UsersDashboard";
 
-function UsersDashboardScreen(){
-    return(
-        <UsersDashboard/>
-    )
+function UsersDashboardScreen() {
+  return <UsersDashboard />;
 }
 
-export default UsersDashboardScreen
+export default UsersDashboardScreen;

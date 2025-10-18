@@ -1,11 +1,7 @@
-import RolesDashboard from "../../features/rolesDashboard/RolesDashboard"
+import RolesDashboard from "../../features/rolesDashboard/RolesDashboard";
 
-
-
-function RolesDashboardScreen(){
-    return(
-        <RolesDashboard/>
-    )
+function RolesDashboardScreen() {
+  return <RolesDashboard />;
 }
 
-export default RolesDashboardScreen
+export default RolesDashboardScreen;
