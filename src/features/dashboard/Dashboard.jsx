@@ -1,68 +1,61 @@
+import React, { useState } from "react";
 import * as Yup from "yup";
-import FormTableManager from "../../shared/components/FormComponets/FormTableMannager";
 import { Container } from "../../shared/components";
+import FormTableManager from "../../shared/components/FormComponets/FormTableMannager";
+import {
+  formElementsCreate,
+  columns,
+  getActions,
+  getHandleSubmit,
+} from "./config";
+import { usePopup } from "../../shared/hooks/usePopup"; // si tenés un hook para mostrar notificaciones
 
+const Dashboard = () => {
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [itemToDelete, setItemToDelete] = useState(null);
+  const [items, setItems] = useState([]);
+
+  // Popups (éxito/error)
+  const { showPopup } = usePopup();
+
+  // Configurar acciones (editar y eliminar)
+  const actions = getActions({
+    setSelectedItem,
+    openModal: () => showPopup("Abrir modal de edición", "info"),
+    openDeleteModal: () => showPopup("Abrir modal de eliminación", "warning"),
+    setItemToDelete,
+  })(items, setItems);
+
+  // Configurar submit
+  const handleSubmit = getHandleSubmit({ showPopup });
+
+  // Valores iniciales
   const initialValues = {
     nombre: "",
     imagen: "",
     padre: "",
   };
 
-  const validationSchema = Yup.object({
-    nombre: Yup.string().required("Requerido"),
-    imagen: Yup.string().url("Debe ser una URL válida").required("Requerido"),
+  // Validación con Yup
+  const validationSchema = Yup.object().shape({
+    nombre: Yup.string().required("El nombre es obligatorio"),
+    imagen: Yup.string()
+      .url("Debe ser una URL válida")
+      .required("La imagen es obligatoria"),
+    padre: Yup.string(),
   });
-
-  const columns = [
-    { key: "id", label: "ID" },
-    { key: "nombre", label: "Nombre" },
-    { key: "padre", label: "Categoría Padre" },
-    {
-      key: "imagen",
-      label: "Imagen",
-      render: (item) => (
-        <img
-          src={item.imagen}
-          alt={item.nombre}
-          className={styles.imagenMiniatura}
-        />
-      ),
-    },
-  ];
-
-  const actions = [
-    {
-      label: "Editar",
-      onClick: (item, items, setItems) => {
-        const nuevoNombre = prompt("Nuevo nombre:", item.nombre);
-        if (nuevoNombre !== null && nuevoNombre.trim() !== "") {
-          const actualizados = items.map((i) =>
-            i.id === item.id ? { ...i, nombre: nuevoNombre } : i
-          );
-          setItems(actualizados);
-        }
-      },
-    },
-    {
-      label: "Eliminar",
-      onClick: (item, items, setItems) => {
-        if (window.confirm(`¿Eliminar "${item.nombre}"?`)) {
-          setItems(items.filter((i) => i.id !== item.id));
-        }
-      },
-    },
-  ];
 
   return (
     <Container>
       <FormTableManager
         title="Gestión de Categorías"
-        formElements={formElements}
+        formElements={formElementsCreate}
         initialValues={initialValues}
         validationSchema={validationSchema}
         columns={columns}
         actions={actions}
         keyField="id"
+        handleSubmit={handleSubmit}
       />
     </Container>
   );
