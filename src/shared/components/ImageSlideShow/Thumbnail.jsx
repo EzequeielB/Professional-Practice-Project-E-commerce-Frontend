@@ -1,4 +1,4 @@
-import styles from "./ImageSlider.module.css";
+import styles from "./styles/Thumbnail.module.css";
 
 const Thumbnail = ({ arr, currentIndex, onSelect }) => {
   return (

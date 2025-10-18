@@ -9,18 +9,21 @@
 
 .sliderImage {
   width: 100%;
-  max-width: 400px;
+  max-width: 100%;
   border-radius: 8px;
   object-fit: cover;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.3s ease-in-out;
 }
 
-.controls {
+.controlsSlider {
   display: flex;
+  justify-content: center;
   gap: 10px;
+  margin-top: 12px;
 }
 
-.button {
+.buttonSlider {
   background-color: #4caf50;
   border: none;
   padding: 8px 14px;
@@ -31,30 +34,6 @@
   transition: background 0.2s ease-in-out;
 }
 
-.button:hover {
+.buttonSlider:hover {
   background-color: #45a049;
-}
-
-.thumbnails {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.thumbnail {
-  height: 50px;
-  border-radius: 4px;
-  object-fit: cover;
-  cursor: pointer;
-  border: 2px solid transparent;
-  transition: transform 0.2s ease, border 0.2s ease;
-}
-
-.thumbnail:hover {
-  transform: scale(1.05);
-}
-
-.activeThumbnail {
-  border: 2px solid #4caf50;
 }
