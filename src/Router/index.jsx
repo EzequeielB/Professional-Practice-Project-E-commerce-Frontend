@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router";
-import { RegisterScreen, DashboardScreen, LoginScreen, VerefyOTPscreen, ResetPasswordSceen, ChangePasswordScreen } from "../Pages";
+import { RegisterScreen, DashboardScreen, LoginScreen, VerefyOTPscreen, ResetPasswordSceen, ChangePasswordScreen, HomeScreen } from "../Pages";
 import MainLayout from "../shared/components/layouts/MainLayout";
 import DashboardLayout from "../features/dashboard/DashboardLayout"
 
@@ -13,6 +13,7 @@ export const Router = createBrowserRouter([
       { path: 'resetPassword', element:<ResetPasswordSceen/>},
       { path: 'verefyOTP', element:<VerefyOTPscreen/>},
       { path: 'changePassword', element:<ChangePasswordScreen/>},
+      { path: 'home', element:<HomeScreen/>},
     ],
   },
 
