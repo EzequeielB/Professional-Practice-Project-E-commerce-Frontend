@@ -29,7 +29,7 @@ const Navbar = ({ children }) => {
   return (
     <div className={styles.navbar}>
       <div className={styles.navbarList}>
-        <a href="#" className={styles.siteTitle}>
+        <a href="/home" className={styles.siteTitle}>
           Ecommerce
         </a>
       </div>

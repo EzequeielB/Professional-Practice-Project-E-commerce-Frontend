@@ -14,6 +14,7 @@ export const Router = createBrowserRouter([
       { path: ROUTES.RESET_PASSWORD, element:<ResetPasswordSceen/>},
       { path: ROUTES.VERIFY_OTP, element:<VerefyOTPscreen/>},
       { path: ROUTES.CHANGE_PASSWORD, element:<ChangePasswordScreen/>},
+      { path: ROUTES.HOME, element:<HomeScreen/>},
     ],
   },
 
