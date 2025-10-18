@@ -1,10 +1,7 @@
-import ChangePassword from "../../features/changePassword/ChangePassword"
+import ChangePassword from "../../features/changePassword/ChangePassword";
 
-
-function ChangePasswordScreen(){
-    return(
-        <ChangePassword/>
-    )
+function ChangePasswordScreen() {
+  return <ChangePassword />;
 }
 
-export default ChangePasswordScreen
+export default ChangePasswordScreen;

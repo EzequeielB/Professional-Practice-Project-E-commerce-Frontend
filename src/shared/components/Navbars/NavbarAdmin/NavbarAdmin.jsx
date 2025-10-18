@@ -1,26 +1,29 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router';
-import styles from './NavbarAdmin.module.css';
+import React, { useState } from "react";
+import { NavLink } from "react-router";
+import styles from "./NavbarAdmin.module.css";
+import { ROUTES } from "../../../../Router/routesConfig";
 
 const NavbarAdmin = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const user = {
-    name: 'Administrador',
+    name: "Administrador",
   };
 
-  const toggleDropdown = () => setDropdownOpen(prev => !prev);
+  const toggleDropdown = () => setDropdownOpen((prev) => !prev);
 
   const handleLogout = () => {
-    console.log('Cerrar sesión');
+    console.log("Cerrar sesión");
   };
 
-  const getInitial = (name) => name ? name.charAt(0).toUpperCase() : '?';
+  const getInitial = (name) => (name ? name.charAt(0).toUpperCase() : "?");
 
   return (
     <nav className={styles.navbar}>
       <div className={styles.navbarLeft}>
-        <NavLink to="/dashboard" className={styles.navLink}>Inicio</NavLink>
+        <NavLink to={ROUTES.DASHBOARD} className={styles.navLink}>
+          Inicio
+        </NavLink>
       </div>
 
       <div className={styles.navbarRight}>

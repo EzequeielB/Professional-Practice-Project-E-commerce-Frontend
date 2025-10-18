@@ -1,11 +1,7 @@
-import Login from "../../features/login/Login"
+import Login from "../../features/login/Login";
 
 function LoginScreen() {
-  return (
-    <>
-    <Login/>
-    </>
-  )
+  return <Login />;
 }
 
-export default LoginScreen
+export default LoginScreen;

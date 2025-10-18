@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import DynamicForm from './DynamicForm';
-import GenericTable from '../Table/GenericTable';
-import Divider from '../ContainerAndDivider/Divider';
+import React from "react";
+import DynamicForm from "./DynamicForm";
+import GenericTable from "../Table/GenericTable";
+import Divider from "../Divider/Divider";
 
 const FormTableManager = ({
   title = "Gestión",

@@ -1,37 +1,6 @@
 import * as Yup from "yup";
 import FormTableManager from "../../shared/components/FormComponets/FormTableMannager";
 import { Container } from "../../shared/components";
-import styles from "./dashboard.module.css";
-const Dashboard = () => {
-  const formElements = [
-    {
-      type: "text",
-      name: "nombre",
-      label: "Nombre de la categoría",
-      placeholder: "Ej: Camisas",
-    },
-    {
-      type: "text",
-      name: "imagen",
-      label: "URL de la imagen",
-    },
-    {
-      type: "select",
-      name: "padre",
-      label: "Categoría Padre",
-      options: [
-        { value: "", label: "-- Ninguna --" },
-        { value: "Hombre", label: "Hombre" },
-        { value: "Mujer", label: "Mujer" },
-        { value: "Niños", label: "Niños" },
-      ],
-    },
-    {
-      type: "button",
-      label: "Crear categoría",
-      submit: true,
-    },
-  ];
 
   const initialValues = {
     nombre: "",

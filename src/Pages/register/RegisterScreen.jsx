@@ -1,11 +1,7 @@
-import Register from "../../features/register/Register"
+import Register from "../../features/register/Register";
 
 function RegisterScreen() {
-  return (
-    <>
-    <Register/>
-    </>
-  )
+  return <Register />;
 }
 
-export default RegisterScreen
+export default RegisterScreen;
