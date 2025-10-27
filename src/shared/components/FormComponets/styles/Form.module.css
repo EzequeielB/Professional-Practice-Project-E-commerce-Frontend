@@ -1,9 +1,15 @@
 .formStyle {
-    width: 100%;
-    max-width: 35.125rem; 
+  /*
+
     display: flex;
     align-items: center;
     flex-direction: column;
     margin-top: 1.875rem; 
-    gap: 1.25rem;      
+    gap: 1.25rem;       */
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 500;
 }

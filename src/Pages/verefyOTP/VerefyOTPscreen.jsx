@@ -1,10 +1,7 @@
-import VerefyOTP from "../../features/VerefyOTP/VerefyOTP"
+import VerefyOTP from "../../features/VerefyOTP/VerefyOTP";
 
-
-function VerefyOTPscreen(){
-    return(
-        <VerefyOTP/>
-    )
+function VerefyOTPscreen() {
+  return <VerefyOTP />;
 }
 
-export default VerefyOTPscreen
+export default VerefyOTPscreen;

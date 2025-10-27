@@ -1,8 +1,14 @@
-import { Container, DynamicForm } from "../../shared/components";
+import {
+  AuthRedirectPanel,
+  Container,
+  DynamicForm,
+  Divider,
+  Title
+} from "../../shared/components";
 import "@fontsource/iceberg";
 import { initialValues, validationSchema } from "./validations";
 import { formElements } from "./config";
-import styles from "./registerStyle.module.css";
+import { ROUTES } from "../../Router/routesConfig";
 
 function Register() {
   const handleSubmit = (values) => {
@@ -11,16 +17,18 @@ function Register() {
 
   return (
     <Container>
-      <div className={styles.formsTitle}>
-        <h1>Registrarse | </h1>
-        <h2>¿Ya tienes cuenta?</h2>
-        <a href="/login">Ingresá aquí</a>
-      </div>
+      <Title title={"Registrarse"}/>
       <DynamicForm
         elements={formElements}
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
+      />
+      <Divider />
+      <AuthRedirectPanel
+        text={"¿Ya tienes cuenta?"}
+        linkPath={ROUTES.LOGIN}
+        linkText={"Ingresá aquí"}
       />
     </Container>
   );

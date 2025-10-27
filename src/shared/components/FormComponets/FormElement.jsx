@@ -4,6 +4,8 @@ import { FiEye, FiEyeOff } from "react-icons/fi";
 import InputField from "./InputField";
 import SelectField from "./SelectField";
 import FormButton from "./FormButton";
+import Divider from "../Divider/Divider";
+import styles from "./styles/Form.module.css";
 
 const FormElement = ({ element }) => {
   const {type, ...rest} = element;

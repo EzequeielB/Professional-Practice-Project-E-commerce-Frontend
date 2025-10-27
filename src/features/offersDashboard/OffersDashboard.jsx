@@ -15,8 +15,7 @@ import {
 import { useModal } from "../../hooks/useModal";
 import { usePopup } from "../../hooks/usePopup";
 import { useCrud } from "../../hooks/UseCrud";
-import { Container } from "../../shared/components";
-import Divider from "../../shared/components/ContainerAndDivider/Divider";
+import { Container, Divider } from "../../shared/components";
 
 const OffersDashboard = () => {
   const { items, setItems } = useCrud("id");
