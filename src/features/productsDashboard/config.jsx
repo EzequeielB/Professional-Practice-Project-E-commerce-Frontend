@@ -190,7 +190,7 @@ export const getActions = ({
 
 
 
-export const getHandleSubmit = ({ showPopup }) => (values, { resetForm, items, setItems }) => {
+export const getHandleSubmit = ({ toast }) => (values, { resetForm, items, setItems }) => {
   try {
     const nuevoItem = {
       id: items.length + 1,
@@ -209,9 +209,9 @@ export const getHandleSubmit = ({ showPopup }) => (values, { resetForm, items, s
     };
 
     setItems([...items, nuevoItem]);
-    showPopup("Producto añadido correctamente", "success");
+    toast.success("Producto añadido correctamente", "success");
     resetForm();
   } catch (err) {
-    showPopup("Error al añadir producto", "error");
+    toast.success("Error al añadir producto", "error");
   }
 };

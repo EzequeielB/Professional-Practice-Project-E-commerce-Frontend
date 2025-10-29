@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import FormTableManager from "../../shared/components/FormComponets/FormTableMannager";
 import EditModal from "../../shared/components/Modal/EditModal";
 import DeleteModal from "../../shared/components/Modal/DeleteModal";
-import PopUpMessage from "../../shared/components/PopUpMessage/PopUpMessage";
 import DetailsModal from "../../shared/components/Modal/DetailsModal.jsx";
 import { initialValues } from "./validations/initialValues";
 import { validationSchema } from "./validations/validationSchema";
@@ -14,9 +13,9 @@ import {
   columns,
 } from "./config";
 import { useModal } from "../../hooks/useModal";
-import { usePopup } from "../../hooks/usePopup";
 import { useCrud } from "../../hooks/UseCrud";
 import { Container } from "../../shared/components";
+import { toast } from "react-toastify";
 
 const ProductsDashboard = () => {
   const { items, setItems } = useCrud("id");
@@ -39,7 +38,6 @@ const ProductsDashboard = () => {
     closeModal: closeDetailsModal,
   } = useModal();
 
-  const { popup, showPopup, hidePopup } = usePopup();
   const [selectedItem, setSelectedItem] = useState(null);
   const [itemToDelete, setItemToDelete] = useState(null);
 
@@ -48,14 +46,14 @@ const ProductsDashboard = () => {
       i.id === selectedItem.id ? { ...i, ...updatedValues } : i
     );
     setItems(actualizados);
-    showPopup("Producto editado correctamente", "success");
+    toast.success("Producto editado correctamente");
     closeEditModal();
   };
 
   const handleConfirmDelete = () => {
     const actualizados = items.filter((i) => i.id !== itemToDelete.id);
     setItems(actualizados);
-    showPopup("Producto eliminado correctamente", "success");
+    toast.success("Producto eliminado correctamente");
     closeDeleteModal();
   };
 
@@ -74,19 +72,11 @@ const ProductsDashboard = () => {
           setItemToDelete,
           openDetailsModal,
         })}
-        getHandleSubmit={getHandleSubmit({ showPopup })}
+        getHandleSubmit={getHandleSubmit({ toast })}
         keyField="id"
         items={items}
         setItems={setItems}
       />
-
-      {popup.show && (
-        <PopUpMessage
-          message={popup.message}
-          type={popup.type}
-          onClose={hidePopup}
-        />
-      )}
 
       <EditModal
         isOpen={isEditOpen}
