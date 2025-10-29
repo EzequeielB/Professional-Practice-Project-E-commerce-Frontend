@@ -209,9 +209,9 @@ export const getHandleSubmit = ({ toast }) => (values, { resetForm, items, setIt
     };
 
     setItems([...items, nuevoItem]);
-    toast.success("Producto añadido correctamente", "success");
+    toast.success("Producto añadido correctamente");
     resetForm();
   } catch (err) {
-    toast.success("Error al añadir producto", "error");
+    toast.error("Error al añadir producto");
   }
 };
