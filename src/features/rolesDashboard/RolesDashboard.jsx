@@ -66,8 +66,8 @@ const RolesDashboard = () => {
         })}
         getHandleSubmit={getHandleSubmit({ toast })}
         keyField="id"
-        items={items}          // 👈 ahora se pasan desde acá
-        setItems={setItems}    // 👈 idem
+        items={items}        
+        setItems={setItems}    
       />
 
       <EditModal
