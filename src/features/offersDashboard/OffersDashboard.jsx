@@ -52,10 +52,6 @@ const OffersDashboard = () => {
 
   return (
     <Container>
-      <h2>Gestión de Ofertas</h2>
-
-      <Divider />
-
       <FormTableManager
         title="Gestión de Ofertas"
         formElements={formElementsCreate}
@@ -73,8 +69,6 @@ const OffersDashboard = () => {
         items={items}
         setItems={setItems}
       />
-
-      <Divider />
 
       <EditModal
         isOpen={isEditOpen}

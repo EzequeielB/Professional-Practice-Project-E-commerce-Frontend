@@ -26,10 +26,9 @@ export const formElementsCreate = [
     ],
   },
 
-  // separador visual dentro del form (usará FormElement -> 'divider')
+
   { type: "divider" },
 
-  // sección avanzada
   { type: "section", label: "Gestión avanzada" },
 
   {
