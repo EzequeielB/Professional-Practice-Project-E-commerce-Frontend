@@ -10,16 +10,17 @@ export const userAuthSlice = createSlice({
   name: "authUser",
   initialState,
   reducers: {
-    login: (state, action) => {
-      state.token = action.payload.token;
-      state.decode = action.payload.jwtDecode(token);
+    loginAction: (state, action) => {
+      const token = action.payload;
+      state.token=token
+      state.decode = jwtDecode(token);
     },
-    logout: (state) => {
+    logoutAction: (state) => {
       state.token = null;
       state.decode = null;
     },
   },
 });
 
-export const { login, logout } = userAuthSlice.actions;
+export const { loginAction, logoutAction } = userAuthSlice.actions;
 export default userAuthSlice.reducer;

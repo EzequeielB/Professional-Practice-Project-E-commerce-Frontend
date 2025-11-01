@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   AuthRedirectPanel,
   Container,
@@ -6,14 +7,31 @@ import {
   Title,
 } from "../../shared/components";
 import "@fontsource/iceberg";
-import {initialValues} from "./validations/initialValues";
-import {validationSchema} from "./validations/validationSchema";
+import { initialValues } from "./validations/initialValues";
+import { validationSchema } from "./validations/validationSchema";
 import { formElements } from "./config";
 import { ROUTES } from "../../Router/routesConfig";
+import { useUsers } from "../../hooks/useUsers";
+import { useNavigate } from "react-router";
 
 function Login() {
-  const handleSubmit = (values) => {
-    console.log("Datos del formulario:", values);
+  const { login, error } = useUsers();
+
+  const navigate = useNavigate();
+
+  const [serverError, setServerError] = useState(null);
+
+
+  const handleSubmit = async (values) => {
+    try {
+      setServerError(null);
+      const user = await login(values);
+      if (user) {
+        console.log("usuario logeado")
+      }
+    } catch {
+      setServerError("Error al iniciar sesion");
+    }
   };
 
   return (
@@ -25,6 +43,9 @@ function Login() {
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       />
+      {(error || serverError) && (
+        <p style={{ color: "red" }}>{error || serverError}</p>
+      )}
       <Divider />
       <AuthRedirectPanel
         text={"¿Aún no tienes cuenta?"}

@@ -1,4 +1,4 @@
 export const initialValues = {
-  Email: '',
+  user_name: '',
   password: '',
 };
