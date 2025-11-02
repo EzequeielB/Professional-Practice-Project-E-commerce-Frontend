@@ -1,15 +1,15 @@
 export const formElements = [
   {
     type: "email",
-    name: "Email",
+    name: "email",
     label: "E-Mail",
     placeholder: "Ingresa tu email",
   },
   {
-    type: "tel",
-    name: "Telefono",
-    label: "Telefono",
-    placeholder: "Ingresa tu número de teléfono",
+    type: "text",
+    name: "user_name",
+    label:"Nombre de usuario",
+    placeholder: "Ingresa tu nombre de usuario",
   },
   {
     type: "password",

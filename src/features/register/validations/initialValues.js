@@ -1,6 +1,6 @@
 export const initialValues = {
-  Email: '',
-  Telefono: '',
+  email: '',
+  user_name: '',
   password: '',
   confirmPassword: '',
 };
