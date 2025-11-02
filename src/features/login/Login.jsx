@@ -12,24 +12,26 @@ import { validationSchema } from "./validations/validationSchema";
 import { formElements } from "./config";
 import { ROUTES } from "../../Router/routesConfig";
 import { useUsers } from "../../hooks/useUsers";
-import { useNavigate } from "react-router";
+import { Link, useNavigate, useLocation } from "react-router";
 
 function Login() {
   const { login, error } = useUsers();
 
   const navigate = useNavigate();
+  const location = useLocation();
+  const from= location.state?.from?.pathname || "/";
+
 
   const [serverError, setServerError] = useState(null);
-
 
   const handleSubmit = async (values) => {
     try {
       setServerError(null);
       const user = await login(values);
       if (user) {
-        console.log("usuario logeado")
+        navigate(from, {replace:true});
       }
-    } catch {
+    } catch { 
       setServerError("Error al iniciar sesion");
     }
   };
