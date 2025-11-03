@@ -28,9 +28,14 @@ export function useUsers() {
     }
   };
 
+    const logout = () => {
+    dispatch(logoutAction());
+  };
+
   return {
     register,
     login,
+    logout,
     error,
   };
 }

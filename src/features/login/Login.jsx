@@ -19,7 +19,7 @@ function Login() {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const from= location.state?.from?.pathname || "/";
+  const from= location.state?.from?.pathname || ROUTES.HOME;
 
 
   const [serverError, setServerError] = useState(null);

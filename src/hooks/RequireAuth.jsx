@@ -5,13 +5,17 @@ import { ROUTES } from "../Router/routesConfig";
 export function RequireAuth({ allowedRoles }) {
   const auth = useSelector((state) => state.auth);
   const location = useLocation();
-  return(
-    auth?.decode.roles?.find((role) => allowedRoles?.includes(role)) 
-      ? <Outlet />
-      : auth?.token
-          ? <Navigate to="/" state={{from:location}} replace/> 
-          : <Navigate to={ROUTES.LOGIN} state={{ from: location }} replace />
-  )
+
+  const userRoles = auth?.decode?.roles || [];
+  const hasAccess = allowedRoles?.some((role) => userRoles.includes(role));
+
+  if (hasAccess) {
+    return <Outlet />;
+  }
+  if (auth?.token) {
+    return <Navigate to={ROUTES.HOME} state={{ from: location }} replace />;
+  }
+  return <Navigate to={ROUTES.LOGIN} state={{ from: location }} replace />;
 }
 
 export default RequireAuth;

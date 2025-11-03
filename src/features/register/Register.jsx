@@ -9,10 +9,13 @@ import {
 import "@fontsource/iceberg";
 import { initialValues, validationSchema } from "./validations";
 import { formElements } from "./config";
+import { useNavigate } from "react-router";
 import { ROUTES } from "../../Router/routesConfig";
 import { useUsers } from "../../hooks/useUsers";
 
 function Register() {
+  const navigate=useNavigate()
+
   const [serverError, setServerError] = useState(null);
 
   const { register, login, error } = useUsers();
@@ -26,7 +29,7 @@ function Register() {
       if (success) {
         const user = await login({ user_name, password });
         if (user) {
-          console.log("usuario logeado");
+          navigate(ROUTES.HOME)
         } else {
           setServerError("Error al iniciar sesión");
         }

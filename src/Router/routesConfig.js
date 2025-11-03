@@ -4,7 +4,8 @@ export const ROUTES = {
   DASHBOARD: "/dashboard",
   RESET_PASSWORD: "/reset-password",
   VERIFY_OTP: "/verefy-OTP",
-  CHANGE_PASSWORD: "/change-password"
+  CHANGE_PASSWORD: "/change-password",
+  HOME:"/home"
 };
 
 export const SUB_ROUTES = {

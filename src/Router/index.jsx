@@ -27,14 +27,15 @@ export const Router = createBrowserRouter([
       { path: ROUTES.RESET_PASSWORD, element: <ResetPasswordSceen /> },
       { path: ROUTES.VERIFY_OTP, element: <VerefyOTPscreen /> },
       { path: ROUTES.CHANGE_PASSWORD, element: <ChangePasswordScreen /> },
+      { path: ROUTES.HOME, element: <HomeScreen /> },
     ],
   },
 
   {
-    path: ROUTES.DASHBOARD,
-    element: <RequireAuth allowedRoles={[1]}/>,
+    element: <RequireAuth allowedRoles={[1]} />,
     children: [
       {
+        path: ROUTES.DASHBOARD,
         element: <DashboardLayout />,
         children: [
           {
