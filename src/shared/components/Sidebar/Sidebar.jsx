@@ -18,7 +18,8 @@ const Sidebar = () => {
           icon="📦"
           routes={[
             { to: `${FULL_ROUTES.DASHBOARD.PRODUCTS}`, label: "Gestionar" },
-            { to: `${FULL_ROUTES.DASHBOARD.STOCK}`, label: "Stock" },
+            { to: `${FULL_ROUTES.DASHBOARD.SIZES}`, label: "Talle" },
+            { to: `${FULL_ROUTES.DASHBOARD.BRANDS}`, label: "Marcas" },
           ]}
         />
 

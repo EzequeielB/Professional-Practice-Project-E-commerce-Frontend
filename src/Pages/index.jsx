@@ -9,7 +9,8 @@ import UsersDashboardScreen from "./usersDashboard/UsersDashboard";
 import ProductsDashboardScreen from "./productsDashboard/ProductsDashboardScreen";
 import OffersDashboardScreen from "./offersDashboard/OffersDashboardScreen";
 import ResetPasswordSceen from "./resetPassword/ResetPasswordScreen";
-
+import SizesDashboardScreen from "./sizesDashboard/SizesDashboardScreen";
+import BrandDashboardScreen from "./brandDashboard/BrandDashboardScreen";
 export {
   RegisterScreen,
   DashboardScreen,
@@ -22,4 +23,6 @@ export {
   ProductsDashboardScreen,
   OffersDashboardScreen,
   HomeScreen,
+  SizesDashboardScreen,
+  BrandDashboardScreen,
 };
