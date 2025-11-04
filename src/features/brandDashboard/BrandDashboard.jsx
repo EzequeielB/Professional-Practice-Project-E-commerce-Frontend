@@ -6,13 +6,13 @@ import { initialValues } from "./validations/initialvalues";
 import { validationSchema } from "./validations/validationSchema";
 import { formElements, formElementsEdit, getActions, columns } from "./config";
 import { useModal } from "../../hooks/useModal";
-import { useSize } from "../../hooks/useSize";
+import { useBrand } from "../../hooks/useBrand";
 import { Container } from "../../shared/components";
 import { toast } from "react-toastify";
 
-const SizesDashboard = () => {
-  const { list, create, update, remove, error } = useSize();
-  const [sizes, setSizes] = useState([]);
+const BrandsDashboard = () => {
+  const { list, create, update, remove, error } = useBrand();
+  const [brands, setBrands] = useState([]);
 
   const {
     isOpen: isEditOpen,
@@ -32,47 +32,48 @@ const SizesDashboard = () => {
   useEffect(() => {
     (async () => {
       const data = await list();
-      setSizes(data);
+      setBrands(data);
     })();
   }, []);
 
   const handleCreate = async (values, { resetForm }) => {
-    const newSize = await create(values);
-    if (newSize) {
-      setSizes([...sizes, newSize]);
-      toast.success("Talle creado correctamente");
+    const newBrand = await create(values);
+    if (newBrand) {
+      setBrands([...brands, newBrand]);
+      toast.success("Marca creado correctamente");
       resetForm();
     } else {
-      toast.error("No se pudo crear el talle");
+      toast.error("No se pudo crear la marca");
     }
   };
 
   const handleSaveEdit = async (updatedValues) => {
+    console.log("Valores enviados al update:", updatedValues);
     const updatedItem = await update(selectedItem.id, updatedValues);
     if (updatedItem) {
-      setSizes(sizes.map((s) => (s.id === selectedItem.id ? updatedItem : s)));
-      toast.success("Talle editado correctamente");
+      setBrands(brands.map((b) => (b.id === selectedItem.id ? updatedItem : b)));
+      toast.success("Marca editado correctamente");
       closeEditModal();
     } else {
-      toast.error("No se pudo editar el talle");
+      toast.error("No se pudo editar la marca");
     }
   };
 
   const handleConfirmDelete = async () => {
     const deleted = await remove(itemToDelete.id);
     if (deleted) {
-      setSizes(sizes.filter((s) => s.id !== itemToDelete.id));
-      toast.success("Talle eliminado correctamente");
+      setBrands(brands.filter((b) => b.id !== itemToDelete.id));
+      toast.success("Marca eliminado correctamente");
       closeDeleteModal();
     } else {
-      toast.error("No se pudo eliminar el talle");
+      toast.error("No se pudo eliminar la marca");
     }
   };
 
   return (
     <Container>
       <FormTableManager
-        title="Gestión de Talles"
+        title="Gestión de Marcas"
         formElements={formElements()}          
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -85,8 +86,8 @@ const SizesDashboard = () => {
         })}
         getHandleSubmit={handleCreate}
         keyField="id"
-        items={sizes}
-        setItems={setSizes}
+        items={brands}
+        setItems={setBrands}
       />
 
       <EditModal
@@ -96,7 +97,7 @@ const SizesDashboard = () => {
         formElements={formElementsEdit()}
         validationSchema={validationSchema}
         onSave={handleSaveEdit}
-        entityLabel="talle"
+        entityLabel="marca"
       />
 
       <DeleteModal
@@ -109,4 +110,4 @@ const SizesDashboard = () => {
   );
 };
 
-export default SizesDashboard;
+export default BrandsDashboard;

@@ -1,13 +1,19 @@
 export const formElements = () => [
   {
     type: "text",
-    name: "size",
-    label: "Talle",
-    placeholder: "Ej: M, L, XL",
+    name: "name",
+    label: "Marca",
+    placeholder: "Ej: Adidas",
+  },
+  {
+    type: "text",
+    name: "external_reference",
+    label: "Link de Referencia",
+    placeholder: "Ej: https://www.adidas.com.ar/",
   },
   {
     type: "button",
-    label: "Crear Talle",
+    label: "Crear Marca",
     submit: true,
   },
 ];
@@ -15,9 +21,15 @@ export const formElements = () => [
 export const formElementsEdit = () => [
   {
     type: "text",
-    name: "size",
-    label: "Talle",
-    placeholder: "Ej: M, L, XL",
+    name: "name",
+    label: "Marca",
+    placeholder: "Ej: Adidas",
+  },
+  {
+    type: "text",
+    name: "external_reference",
+    label: "Link de referencia",
+    placeholder: "Ej: https://www.adidas.com.ar/",
   },
   {
     type: "button",
@@ -28,7 +40,8 @@ export const formElementsEdit = () => [
 
 export const columns = [
   { key: "id", label: "ID" },
-  { key: "size", label: "Talle" },
+  { key: "name", label: "Marca" },
+  { key: "external_reference", label: "Link de referencia" },
 ];
 
 export const getActions = ({
