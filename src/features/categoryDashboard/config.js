@@ -1,9 +1,9 @@
-export const formElements = (categoriesOptions) => [
+export const formElements = (categories = []) => [
   {
     type: "text",
     name: "name",
     label: "Nombre de la Categoría",
-    placeholder: "Ej: Electrónica",
+    placeholder: "Ej: Remeras",
   },
   {
     type: "select",
@@ -11,7 +11,10 @@ export const formElements = (categoriesOptions) => [
     label: "Categoría Padre (opcional)",
     options: [
       { value: "", label: "Sin categoría padre" },
-      ...categoriesOptions,
+      ...categories.map((c) => ({
+        value: c.id,
+        label: c.name,
+      })),
     ],
   },
   {
@@ -21,12 +24,12 @@ export const formElements = (categoriesOptions) => [
   },
 ];
 
-export const formElementsEdit = (categoriesOptions) => [
+export const formElementsEdit = (categories = []) => [
   {
     type: "text",
     name: "name",
     label: "Nombre de la Categoría",
-    placeholder: "Ej: Electrónica",
+    placeholder: "Ej: Remeras",
   },
   {
     type: "select",
@@ -34,7 +37,10 @@ export const formElementsEdit = (categoriesOptions) => [
     label: "Categoría Padre (opcional)",
     options: [
       { value: "", label: "Sin categoría padre" },
-      ...categoriesOptions,
+      ...categories.map((c) => ({
+        value: c.id,
+        label: c.name,
+      })),
     ],
   },
   {
@@ -44,31 +50,40 @@ export const formElementsEdit = (categoriesOptions) => [
   },
 ];
 
-
-export const getActions = ({
-  setSelectedItem,
-  openModal,
-  openDeleteModal,
-  setItemToDelete,
-}) => () => [
+export const columns = [
+  { key: "id", label: "ID" },
+  { key: "name", label: "Nombre" },
   {
-    label: "Editar",
-    variant: "edit",
-    onClick: (item) => {
-      setSelectedItem(item);
-      openModal();
-    },
-  },
-  {
-    label: "Eliminar",
-    variant: "delete",
-    onClick: (item) => {
-      setItemToDelete(item);
-      openDeleteModal();
+    key: "id_category_parent",
+    label: "Categoría Padre",
+    render: (item, allItems) => {
+      const parent = allItems.find((c) => c.id === item.id_category_parent);
+      return parent ? parent.name : "—";
     },
   },
 ];
 
+export const getActions =
+  ({ setSelectedItem, openModal, openDeleteModal, setItemToDelete }) =>
+  () =>
+    [
+      {
+        label: "Editar",
+        variant: "edit",
+        onClick: (item) => {
+          setSelectedItem(item);
+          openModal();
+        },
+      },
+      {
+        label: "Eliminar",
+        variant: "delete",
+        onClick: (item) => {
+          setItemToDelete(item);
+          openDeleteModal();
+        },
+      },
+    ];
 
 export const getHandleSubmit =
   ({ toast }) =>

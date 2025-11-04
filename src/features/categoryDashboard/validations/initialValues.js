@@ -1,4 +1,4 @@
 export const initialValues = {
   name: "",
-  id_category_parent: "",
+  id_category_parent: ""
 };

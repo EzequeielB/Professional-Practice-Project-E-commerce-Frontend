@@ -4,12 +4,7 @@ import EditModal from "../../shared/components/Modal/EditModal";
 import DeleteModal from "../../shared/components/Modal/DeleteModal";
 import { initialValues } from "./validations/initialValues";
 import { validationSchema } from "./validations/validationSchema";
-import {
-  formElements,
-  formElementsEdit,
-  getActions,
-  columns,
-} from "./config";
+import { formElements, formElementsEdit, getActions, columns } from "./config";
 import { useModal } from "../../hooks/useModal";
 import { useCategory } from "../../hooks/useCategory";
 import { Container } from "../../shared/components";
@@ -34,7 +29,6 @@ const CategoriesDashboard = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [itemToDelete, setItemToDelete] = useState(null);
 
-
   useEffect(() => {
     (async () => {
       const data = await list();
@@ -43,7 +37,15 @@ const CategoriesDashboard = () => {
   }, []);
 
   const handleCreate = async (values, { resetForm }) => {
-    const newCat = await create(values);
+    const payload = {
+      ...values,
+      id_category_parent:
+        values.id_category_parent === ""
+          ? null
+          : Number(values.id_category_parent),
+    };
+
+    const newCat = await create(payload);
     if (newCat) {
       setCategories([...categories, newCat]);
       toast.success("Categoría creada correctamente");
@@ -52,7 +54,15 @@ const CategoriesDashboard = () => {
   };
 
   const handleSaveEdit = async (updatedValues) => {
-    const updated = await update(selectedItem.id, updatedValues);
+    const payload = {
+      ...updatedValues,
+      id_category_parent:
+        updatedValues.id_category_parent === ""
+          ? null
+          : Number(updatedValues.id_category_parent),
+    };
+
+    const updated = await update(selectedItem.id, payload);
     if (updated) {
       setCategories(
         categories.map((c) => (c.id === selectedItem.id ? updated : c))
