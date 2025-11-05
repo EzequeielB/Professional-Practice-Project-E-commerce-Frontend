@@ -11,7 +11,7 @@ import { Container } from "../../shared/components";
 import { toast } from "react-toastify";
 
 const BrandsDashboard = () => {
-  const { list, create, update, remove, error } = useBrand();
+  const { listBrand, create, update, remove, error } = useBrand();
   const [brands, setBrands] = useState([]);
 
   const {
@@ -31,7 +31,7 @@ const BrandsDashboard = () => {
 
   useEffect(() => {
     (async () => {
-      const data = await list();
+      const data = await listBrand();
       setBrands(data);
     })();
   }, []);

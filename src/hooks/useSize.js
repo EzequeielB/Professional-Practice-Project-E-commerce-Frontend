@@ -10,7 +10,7 @@ export function useSize() {
     headers: { Authorization: `Bearer ${token}` },
   };
 
-  const list = async () => {
+  const listSizes = async () => {
     try {
       const { data } = await API.get("/sizes/list", authHeaders);
       return data.sizes;
@@ -53,5 +53,5 @@ export function useSize() {
     }
   };
 
-  return { list, create, update, remove, error };
+  return { listSizes, create, update, remove, error };
 }

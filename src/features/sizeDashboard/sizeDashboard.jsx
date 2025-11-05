@@ -11,7 +11,7 @@ import { Container } from "../../shared/components";
 import { toast } from "react-toastify";
 
 const SizesDashboard = () => {
-  const { list, create, update, remove, error } = useSize();
+  const { listSizes, create, update, remove, error } = useSize();
   const [sizes, setSizes] = useState([]);
 
   const {
@@ -31,7 +31,7 @@ const SizesDashboard = () => {
 
   useEffect(() => {
     (async () => {
-      const data = await list();
+      const data = await listSizes();
       setSizes(data);
     })();
   }, []);

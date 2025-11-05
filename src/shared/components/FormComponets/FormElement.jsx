@@ -1,6 +1,7 @@
 import InputField from "./InputField";
 import SelectField from "./SelectField";
 import FormButton from "./FormButton";
+import MultiSelectField from "./MultiSelectField";
 
 const FormElement = ({ element }) => {
   const {type, ...rest} = element;
@@ -15,6 +16,9 @@ const FormElement = ({ element }) => {
 
     case "select":
       return <SelectField{... rest}/>;
+
+    case "multiselect":
+      return <MultiSelectField {...rest} />;
 
     case "button":
       return <FormButton{... rest}/>;

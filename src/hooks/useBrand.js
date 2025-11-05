@@ -10,7 +10,7 @@ export function useBrand() {
     headers: { Authorization: `Bearer ${token}` },
   };
 
-  const list = async () => {
+  const listBrand = async () => {
     try {
       const { data } = await API.get("/brands/list", authHeaders);
       return data.brands;
@@ -53,5 +53,5 @@ export function useBrand() {
     }
   };
 
-  return { list, create, update, remove, error };
+  return { listBrand, create, update, remove, error };
 }
