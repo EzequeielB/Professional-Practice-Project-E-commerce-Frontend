@@ -55,7 +55,7 @@ export function useUniqueProducts() {
   const remove = async (id) => {
     try {
       const { data } = await API.delete(`/unique-product/delete/${id}`, authHeaders);
-      return data.unique_product; // 
+      return data.unique_product; 
     } catch (err) {
       setError(err.response?.data?.error || "Error al eliminar producto único");
       return null;

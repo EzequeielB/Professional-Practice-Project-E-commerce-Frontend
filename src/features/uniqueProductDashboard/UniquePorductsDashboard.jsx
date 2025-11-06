@@ -52,8 +52,6 @@ const UniqueProductsDashboard = () => {
   const handleCreate = async (values, { resetForm }) => {
     const payload = {
       ...values,
-      offer: Number(values.offer),
-      unit_price: Number(values.unit_price),
       id_brand: values.id_brand === "" ? null : Number(values.id_brand),
       size: values.size.map((s) => Number(s)),
       stock: {
@@ -76,8 +74,7 @@ const handleSaveEdit = async (updatedValues) => {
 
   const payload = {
     ...rest,
-    offer: Number(rest.offer),
-    unit_price: Number(rest.unit_price),
+
     id_brand: rest.id_brand === "" ? null : Number(rest.id_brand),
     size: rest.size.map((s) => Number(s)),
     stock: {

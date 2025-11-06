@@ -5,22 +5,7 @@ export const formElements = (brands = [], sizes = []) => [
     label: "Nombre del Producto Único",
     placeholder: "Ej: Zapatilla Air Max",
   },
-  {
-    type: "number",
-    name: "offer",
-    label: "Oferta (%)",
-    placeholder: "Ej: 15.5",
-    step: "0.01",
-    min: "0",
-  },
-  {
-    type: "number",
-    name: "unit_price",
-    label: "Precio Unitario",
-    placeholder: "Ej: 120",
-    step: "0.01",
-    min: "0",
-  },
+
   {
     type: "text",
     name: "color",
@@ -61,8 +46,6 @@ export const formElementsEdit = formElements;
 export const columns = [
   { key: "id", label: "ID" },
   { key: "name", label: "Nombre" },
-  { key: "offer", label: "Oferta (%)" },
-  { key: "unit_price", label: "Precio Unitario" },
   { key: "color", label: "Color" },
   {
     key: "brand",
@@ -108,8 +91,6 @@ export const getHandleSubmit =
     const nuevoItem = {
       id: items.length + 1,
       ...values,
-      offer: Number(values.offer),
-      unit_price: Number(values.unit_price),
       id_brand: values.id_brand === "" ? null : Number(values.id_brand),
       size: Array.isArray(values.size) ? values.size.map((s) => Number(s)) : [],
       stock: {
