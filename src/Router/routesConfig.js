@@ -20,6 +20,7 @@ export const SUB_ROUTES = {
     ORDERS: "ordenes",
     SIZES: "talles",
     BRANDS: "marcas",
+    UNIQUE_PRODUCTS: "uniqueproducts"
   },
 };
 

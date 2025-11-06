@@ -20,6 +20,7 @@ const Sidebar = () => {
             { to: `${FULL_ROUTES.DASHBOARD.PRODUCTS}`, label: "Gestionar" },
             { to: `${FULL_ROUTES.DASHBOARD.SIZES}`, label: "Talle" },
             { to: `${FULL_ROUTES.DASHBOARD.BRANDS}`, label: "Marcas" },
+            { to: `${FULL_ROUTES.DASHBOARD.UNIQUE_PRODUCTS}`, label: "Producto Unico" },
           ]}
         />
 

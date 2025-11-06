@@ -13,6 +13,7 @@ import {
   OffersDashboardScreen,
   SizesDashboardScreen,
   BrandDashboardScreen,
+  UniqueProductsDashboardScreen,
 } from "../Pages";
 import MainLayout from "../shared/components/layouts/MainLayout";
 import DashboardLayout from "../shared/components/layouts/DashboardLayout/DashboardLayout";
@@ -67,6 +68,10 @@ export const Router = createBrowserRouter([
           {
             path: SUB_ROUTES.DASHBOARD.BRANDS,
             element: <BrandDashboardScreen />,
+          },
+          {
+            path: SUB_ROUTES.DASHBOARD.UNIQUE_PRODUCTS,
+            element: <UniqueProductsDashboardScreen />,
           },
         ],
       },

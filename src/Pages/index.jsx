@@ -11,6 +11,7 @@ import OffersDashboardScreen from "./offersDashboard/OffersDashboardScreen";
 import ResetPasswordSceen from "./resetPassword/ResetPasswordScreen";
 import SizesDashboardScreen from "./sizesDashboard/SizesDashboardScreen";
 import BrandDashboardScreen from "./brandDashboard/BrandDashboardScreen";
+import UniqueProductsDashboardScreen from "./uniquePoroductDashboard/UniqueProductDashboardScreen";
 export {
   RegisterScreen,
   DashboardScreen,
@@ -25,4 +26,5 @@ export {
   HomeScreen,
   SizesDashboardScreen,
   BrandDashboardScreen,
+  UniqueProductsDashboardScreen,
 };
