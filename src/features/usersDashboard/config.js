@@ -66,7 +66,7 @@ export const getActions = ({ setSelectedItem, openModal, openDeleteModal, setIte
   ];
 
 
-export const getHandleSubmit = ({ showPopup }) => (values, { resetForm, items, setItems }) => {
+export const getHandleSubmit = ({ toast }) => (values, { resetForm, items, setItems }) => {
   const nuevoItem = {
     id: items.length + 1,
     ...values,
@@ -74,6 +74,6 @@ export const getHandleSubmit = ({ showPopup }) => (values, { resetForm, items, s
   };
 
   setItems([...items, nuevoItem]);
-  showPopup("Usuario creado correctamente", "success");
+  toast.success("Usuario creado correctamente");
   resetForm();
 };

@@ -2,10 +2,10 @@ import { ROUTES } from "../../Router/routesConfig";
 
 export const formElements = [
   {
-    type: "email",
-    name: "Email",
-    label: "E-Mail",
-    placeholder: "Ingresa tu email",
+    type: "text",
+    name: "user_name",
+    label: "Nombre de usuario",
+    placeholder: "Ingresa tu nombre de usuario",
   },
   {
     type: "password",

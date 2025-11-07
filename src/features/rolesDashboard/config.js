@@ -55,13 +55,14 @@ export const getActions = ({
   },
 ];
 
-export const getHandleSubmit = ({ showPopup }) => (values, { resetForm, items, setItems }) => {
+export const getHandleSubmit = ({ toast }) => (values, { resetForm, items, setItems }) => {
   const nuevoItem = {
     id: items.length + 1,
     ...values,
   };
 
   setItems([...items, nuevoItem]);
-  showPopup("Rol creado correctamente", "success");
+  toast.success("Rol creado correctamente");
   resetForm();
 };
+

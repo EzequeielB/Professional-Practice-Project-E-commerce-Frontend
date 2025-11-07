@@ -1,4 +1,4 @@
-//EC-41 Divider
+
 const Divider = () => {
   return (
     <hr

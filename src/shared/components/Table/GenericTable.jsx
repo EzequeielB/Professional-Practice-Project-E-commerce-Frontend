@@ -18,7 +18,7 @@ const GenericTable = ({ data, columns, actions = [], keyField = 'id' }) => {
             <tr key={item[keyField]}>
               {columns.map((col) => (
                 <td key={col.key}>
-                  {col.render ? col.render(item) : item[col.key]}
+                  {col.render ? col.render(item, data) : item[col.key]}
                 </td>
               ))}
               {actions.length > 0 && (

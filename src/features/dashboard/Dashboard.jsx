@@ -2,48 +2,54 @@ import React, { useState } from "react";
 import * as Yup from "yup";
 import { Container } from "../../shared/components";
 import FormTableManager from "../../shared/components/FormComponets/FormTableMannager";
+import { initialValues } from "./validations/initialValues";
+import { validationSchema } from "./validations/validationSchema";
 import {
   formElementsCreate,
-  columns,
-  getActions,
+  formElementsEdit,
   getHandleSubmit,
+  getActions,
+  columns,
 } from "./config";
-import { usePopup } from "../../hooks/UsePopUp";
+import { useModal } from "../../hooks/useModal";
+import { useCrud } from "../../hooks/UseCrud";
+import { toast } from "react-toastify";
+import EditModal from "../../shared/components/Modal/EditModal";
+import DeleteModal from "../../shared/components/Modal/DeleteModal";
 
 const Dashboard = () => {
+  const { items, setItems } = useCrud("id");
+
+  const {
+    isOpen: isEditOpen,
+    openModal: openEditModal,
+    closeModal: closeEditModal,
+  } = useModal();
+
+  const {
+    isOpen: isDeleteOpen,
+    openModal: openDeleteModal,
+    closeModal: closeDeleteModal,
+  } = useModal();
+
   const [selectedItem, setSelectedItem] = useState(null);
   const [itemToDelete, setItemToDelete] = useState(null);
-  const [items, setItems] = useState([]);
 
-  // Popups (éxito/error)
-  const { showPopup } = usePopup();
-
-  // Configurar acciones (editar y eliminar)
-  const actions = getActions({
-    setSelectedItem,
-    openModal: () => showPopup("Abrir modal de edición", "info"),
-    openDeleteModal: () => showPopup("Abrir modal de eliminación", "warning"),
-    setItemToDelete,
-  })(items, setItems);
-
-  // Configurar submit
-  const handleSubmit = getHandleSubmit({ showPopup });
-
-  // Valores iniciales
-  const initialValues = {
-    nombre: "",
-    imagen: "",
-    padre: "",
+  const handleSaveEdit = (updatedValues) => {
+    const actualizados = items.map((i) =>
+      i.id === selectedItem.id ? { ...i, ...updatedValues } : i
+    );
+    setItems(actualizados);
+    toast.success("Categoria editada correctamente");
+    closeEditModal();
   };
 
-  // Validación con Yup
-  const validationSchema = Yup.object().shape({
-    nombre: Yup.string().required("El nombre es obligatorio"),
-    imagen: Yup.string()
-      .url("Debe ser una URL válida")
-      .required("La imagen es obligatoria"),
-    padre: Yup.string(),
-  });
+  const handleConfirmDelete = () => {
+    const actualizados = items.filter((i) => i.id !== itemToDelete.id);
+    setItems(actualizados);
+    toast.success("categoria eliminada correctamente");
+    closeDeleteModal();
+  };
 
   return (
     <Container>
@@ -53,9 +59,33 @@ const Dashboard = () => {
         initialValues={initialValues}
         validationSchema={validationSchema}
         columns={columns}
-        actions={actions}
+        getActions={getActions({
+          setSelectedItem,
+          openModal: openEditModal,
+          openDeleteModal,
+          setItemToDelete,
+        })}
+        getHandleSubmit={getHandleSubmit({ toast })}
         keyField="id"
-        handleSubmit={handleSubmit}
+        items={items}
+        setItems={setItems}
+      />
+
+      <EditModal
+        isOpen={isEditOpen}
+        onClose={closeEditModal}
+        item={selectedItem}
+        formElements={formElementsEdit}
+        validationSchema={validationSchema}
+        onSave={handleSaveEdit}
+        entityLabel="oferta"
+      />
+
+      <DeleteModal
+        isOpen={isDeleteOpen}
+        onClose={closeDeleteModal}
+        item={itemToDelete}
+        onConfirm={handleConfirmDelete}
       />
     </Container>
   );

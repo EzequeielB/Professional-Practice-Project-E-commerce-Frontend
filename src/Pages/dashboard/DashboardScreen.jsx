@@ -1,7 +1,7 @@
-import Dashboard from "../../features/dashboard/Dashboard";
+import CategoriesDashboard from "../../features/categoryDashboard/CategoryDashboard";
 
 function DashboardScreen() {
-  return <Dashboard />;
+  return <CategoriesDashboard />;
 }
 
 export default DashboardScreen;
