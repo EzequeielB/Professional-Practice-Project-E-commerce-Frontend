@@ -14,6 +14,7 @@ import {
   SizesDashboardScreen,
   BrandDashboardScreen,
   UniqueProductsDashboardScreen,
+  ShopDisplayView,
 } from "../Pages";
 import MainLayout from "../shared/components/layouts/MainLayout";
 import DashboardLayout from "../shared/components/layouts/DashboardLayout/DashboardLayout";
@@ -31,6 +32,7 @@ export const Router = createBrowserRouter([
       { path: ROUTES.VERIFY_OTP, element: <VerefyOTPscreen /> },
       { path: ROUTES.CHANGE_PASSWORD, element: <ChangePasswordScreen /> },
       { path: ROUTES.HOME, element: <HomeScreen /> },
+      { path: `${ROUTES.SHOP}/:id`, element: <ShopDisplayView /> },
     ],
   },
 

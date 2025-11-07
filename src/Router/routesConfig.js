@@ -6,6 +6,7 @@ export const ROUTES = {
   VERIFY_OTP: "/verefy-OTP",
   CHANGE_PASSWORD: "/change-password",
   HOME: "/home",
+  SHOP: "/product",
 };
 
 export const SUB_ROUTES = {

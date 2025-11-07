@@ -56,10 +56,9 @@ const handleCreate = async (values, { resetForm }) => {
     unit_price: Number(values.unit_price),
     categories: values.categories.map((c) => Number(c)),
     uniqueProducts: values.uniqueProducts.map((u) => Number(u)),
-    images: values.images.map((i) => i.url), // ✅ corregido
+    images: values.images.map((i) => i.url),
   };
 
-  console.log("Payload final:", payload);
 
   const newProduct = await create(payload);
   if (newProduct) {
@@ -79,10 +78,10 @@ const handleSaveEdit = async (updatedValues) => {
     unit_price: Number(rest.unit_price),
     categories: rest.categories.map((c) => Number(c)),
     uniqueProducts: rest.uniqueProducts.map((u) => Number(u)),
-    images: rest.images.map((i) => i.url), // ✅ ahora se envía como array de strings
+    images: rest.images.map((i) => i.url),
   };
 
-  console.log("Payload update:", payload);
+
 
   const updated = await update(selectedItem.id, payload);
   if (updated) {

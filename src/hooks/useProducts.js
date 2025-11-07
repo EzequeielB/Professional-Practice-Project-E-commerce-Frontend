@@ -15,7 +15,6 @@ export function useProducts() {
   const list = async () => {
     try {
       const { data } = await API.get("/products/list", authHeaders);
-      console.log(data.products)
       return data.products;
     } catch (err) {
       setError(err.response?.data?.error || "Error al listar productos");

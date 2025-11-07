@@ -48,7 +48,6 @@ const BrandsDashboard = () => {
   };
 
   const handleSaveEdit = async (updatedValues) => {
-    console.log("Valores enviados al update:", updatedValues);
     const updatedItem = await update(selectedItem.id, updatedValues);
     if (updatedItem) {
       setBrands(brands.map((b) => (b.id === selectedItem.id ? updatedItem : b)));

@@ -12,6 +12,7 @@ import ResetPasswordSceen from "./resetPassword/ResetPasswordScreen";
 import SizesDashboardScreen from "./sizesDashboard/SizesDashboardScreen";
 import BrandDashboardScreen from "./brandDashboard/BrandDashboardScreen";
 import UniqueProductsDashboardScreen from "./uniquePoroductDashboard/UniqueProductDashboardScreen";
+import ShopDisplayView from "./shopDisplay/ShopDisplayView";
 export {
   RegisterScreen,
   DashboardScreen,
@@ -27,4 +28,5 @@ export {
   SizesDashboardScreen,
   BrandDashboardScreen,
   UniqueProductsDashboardScreen,
+  ShopDisplayView,
 };

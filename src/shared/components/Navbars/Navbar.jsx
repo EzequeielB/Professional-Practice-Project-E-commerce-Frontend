@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { BUTTON_TYPES } from "../../constants";
 import Button from "../Button/Button";
+import CartDropdown from "../CartDropdown/CartDropdown";
 import styles from "./Navbar.module.css";
 import { ACTION_TYPES, navbarActions } from "./config";
 import { useNavigate } from "react-router";
@@ -9,10 +11,13 @@ import { ROUTES } from "../../../Router/routesConfig";
 
 const Navbar = ({ children }) => {
   const navigate = useNavigate();
-
   const { logout } = useUsers();
-
   const auth = useSelector((state) => state.auth);
+
+  const cart = useSelector((state) => state.cart.cart);
+  const cartItems = cart?.items || [];
+
+  const [showCart, setShowCart] = useState(false);
 
   const handleLogout = () => {
     logout();
@@ -52,14 +57,29 @@ const Navbar = ({ children }) => {
         {!auth?.token ? (
           navbarActions.map((action, index) => getActions(action, index))
         ) : (
-          <Button
-            label="Cerrar sesión"
-            type={BUTTON_TYPES.LINK_BUTTON}
-            onClick={handleLogout}
-          />
+          <div className={styles.loggedActions}>
+            <Button
+              label="Cerrar sesión"
+              type={BUTTON_TYPES.LINK_BUTTON}
+              onClick={handleLogout}
+            />
+
+            <div
+              className={styles.cartIcon}
+              onClick={() => setShowCart((prev) => !prev)}
+            >
+              🛒
+              {cartItems.length > 0 && (
+                <span className={styles.cartCount}>{cartItems.length}</span>
+              )}
+            </div>
+
+            {showCart && <CartDropdown />}
+          </div>
         )}
       </div>
     </div>
   );
 };
+
 export default Navbar;

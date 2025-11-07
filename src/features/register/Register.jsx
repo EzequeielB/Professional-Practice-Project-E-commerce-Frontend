@@ -21,7 +21,6 @@ function Register() {
   const { register, login, error } = useUsers();
 
   const handleSubmit = async (RegisterPayload) => {
-    console.log("Payload recibido:", RegisterPayload);
     try {
       setServerError(null);
       const { user_name, password } = RegisterPayload;

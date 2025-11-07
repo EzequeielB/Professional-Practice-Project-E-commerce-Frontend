@@ -1,4 +1,3 @@
-// src/components/Form/UrlListField.jsx
 import { useField, useFormikContext } from "formik";
 import { useState, useEffect } from "react";
 
@@ -6,7 +5,7 @@ const UrlListField = ({ name, label }) => {
   const [field] = useField(name);
   const { setFieldValue } = useFormikContext();
 
-  // 🔹 Detecta si vienen objetos o strings
+
   const initial = Array.isArray(field.value)
     ? field.value.map((item) =>
         typeof item === "string"
@@ -18,7 +17,6 @@ const UrlListField = ({ name, label }) => {
   const [images, setImages] = useState(initial);
 
   useEffect(() => {
-    // ✅ Mantiene el array como [{id, url}] y no lo convierte en string
     setFieldValue(name, images);
   }, [images]);
 

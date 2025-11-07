@@ -10,6 +10,7 @@ import {
   REGISTER,
 } from "redux-persist";
 import userAuthReducer from "../features/auth/authSlice";
+import cartReducer from "../features/cart/cartSlice"
 
 const persistConfig = {
   key: "root",
@@ -18,9 +19,12 @@ const persistConfig = {
 
 const persistedAuthReducer = persistReducer(persistConfig, userAuthReducer);
 
+const persistedCartReducer = persistReducer(persistConfig, cartReducer);
+
 export const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
+    cart: persistedCartReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
