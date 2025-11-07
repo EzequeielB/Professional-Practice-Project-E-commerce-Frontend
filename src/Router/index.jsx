@@ -20,14 +20,20 @@ import MainLayout from "../shared/components/layouts/MainLayout";
 import DashboardLayout from "../shared/components/layouts/DashboardLayout/DashboardLayout";
 import { ROUTES, SUB_ROUTES } from "./routesConfig";
 import RequireAuth from "../hooks/RequireAuth";
+import RequireGuest from "../hooks/RequireGuest";
 
 export const Router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
     children: [
-      { path: ROUTES.REGISTER, element: <RegisterScreen /> },
-      { path: ROUTES.LOGIN, element: <LoginScreen /> },
+      {
+        element: <RequireGuest />,
+        children: [
+          { path: ROUTES.REGISTER, element: <RegisterScreen /> },
+          { path: ROUTES.LOGIN, element: <LoginScreen /> },
+        ],
+      },
       { path: ROUTES.RESET_PASSWORD, element: <ResetPasswordSceen /> },
       { path: ROUTES.VERIFY_OTP, element: <VerefyOTPscreen /> },
       { path: ROUTES.CHANGE_PASSWORD, element: <ChangePasswordScreen /> },

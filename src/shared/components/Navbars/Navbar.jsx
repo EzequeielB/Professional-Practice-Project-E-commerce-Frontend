@@ -24,6 +24,8 @@ const Navbar = ({ children }) => {
     navigate(ROUTES.LOGIN);
   };
 
+  const isAdmin = auth?.decode?.roles?.includes(1);
+
   const getActions = (action, index) => {
     switch (action.type) {
       case ACTION_TYPES.LOGO:
@@ -49,7 +51,7 @@ const Navbar = ({ children }) => {
   return (
     <div className={styles.navbar}>
       <div className={styles.navbarList}>
-        <a href="#" className={styles.siteTitle}>
+        <a href={ROUTES.HOME} className={styles.siteTitle}>
           Ecommerce
         </a>
       </div>
@@ -63,6 +65,14 @@ const Navbar = ({ children }) => {
               type={BUTTON_TYPES.LINK_BUTTON}
               onClick={handleLogout}
             />
+
+            {isAdmin && (
+              <Button
+                label="Dashboard"
+                type={BUTTON_TYPES.LINK_BUTTON}
+                onClick={() => navigate(ROUTES.DASHBOARD)}
+              />
+            )}
 
             <div
               className={styles.cartIcon}

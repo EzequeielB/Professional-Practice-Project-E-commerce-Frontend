@@ -11,7 +11,6 @@ const NavbarAdmin = () => {
 
   const { logout } = useUsers();
   const auth = useSelector((state) => state.auth.decode);
-  console.log(auth);
 
   const toggleDropdown = () => setDropdownOpen((prev) => !prev);
 

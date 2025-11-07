@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router"; 
+import { ROUTES } from "../../Router/routesConfig"; 
 import { useParams } from "react-router";
 import ImageSlider from "../../shared/components/ImageSlideShow/ImageSlider";
 import { useProducts } from "../../hooks/useProducts";
@@ -13,6 +15,7 @@ const ShopDisplay = () => {
   const { list, create, update, error: cartError } = useCart();
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [product, setProduct] = useState(null);
   const [cantidad, setCantidad] = useState(1);
@@ -47,6 +50,11 @@ const getCurrentPrice = () => {
     product.uniqueProducts?.find((u) => u.id === selectedUnique)?.stock?.count ?? 0;
 
   const handleAddToCart = async () => {
+    if (!auth?.token) {
+      navigate(ROUTES.LOGIN);
+      return;
+    }
+
     try {
       setCreating(true);
       const userId = auth?.decode?.id ? Number(auth.decode.id) : null;
@@ -83,7 +91,6 @@ const getCurrentPrice = () => {
       setCreating(false);
     }
   };
-
   return (
     <div className={styles.container}>
       <div className={styles.leftSection}>
