@@ -4,7 +4,9 @@ export const ROUTES = {
   DASHBOARD: "/dashboard",
   RESET_PASSWORD: "/reset-password",
   VERIFY_OTP: "/verefy-OTP",
-  CHANGE_PASSWORD: "/change-password"
+  CHANGE_PASSWORD: "/change-password",
+  HOME: "/home",
+  SHOP: "/product",
 };
 
 export const SUB_ROUTES = {
@@ -16,7 +18,10 @@ export const SUB_ROUTES = {
     USERS: "usuarios",
     USERS_LIST: "usuarios-list",
     OFFERS: "ofertas",
-    ORDERS: "ordenes"
+    ORDERS: "ordenes",
+    SIZES: "talles",
+    BRANDS: "marcas",
+    UNIQUE_PRODUCTS: "uniqueproducts"
   },
 };
 

@@ -1,172 +1,125 @@
-export const formElementsCreate = [
-  { type: "text", name: "nombre", label: "Nombre", placeholder: "Ej: Remera básica" },
-  { type: "text", name: "descripcion", label: "Descripción", placeholder: "Breve descripción" },
-  { type: "text", name: "color", label: "Color (hex o nombre)", placeholder: "#ffffff o Blanco" },
-  { type: "text", name: "precioUnitario", label: "Precio Unitario", placeholder: "0.00" },
-  { type: "text", name: "imagen", label: "URL de la Imagen", placeholder: "https://..." },
+export const formElements = (categories = [], uniqueProducts = []) => [
   {
-    type: "select",
-    name: "categoria",
-    label: "Categoría",
-    options: [
-      { value: "", label: "Seleccione categoría" },
-      { value: "camisas", label: "Camisas" },
-      { value: "pantalones", label: "Pantalones" },
-      { value: "accesorios", label: "Accesorios" },
-    ],
+    type: "text",
+    name: "name",
+    label: "Nombre del Producto",
+    placeholder: "Ej: Zapatilla Air Max",
   },
   {
-    type: "select",
-    name: "oferta",
-    label: "Oferta (opcional)",
-    options: [
-      { value: "", label: "Sin oferta" },
-      { value: "10off", label: "10% off" },
-      { value: "20off", label: "20% off" },
-    ],
+    type: "textarea",
+    name: "description",
+    label: "Descripción",
+    placeholder: "Ej: Zapatilla deportiva con cámara de aire",
   },
-
-  // separador visual dentro del form (usará FormElement -> 'divider')
-  { type: "divider" },
-
-  // sección avanzada
-  { type: "section", label: "Gestión avanzada" },
-
-  {
-    type: "select",
-    name: "talla",
-    label: "Talla (opcional)",
-    options: [
-      { value: "", label: "Seleccione talla" },
-      { value: "XS", label: "XS" },
-      { value: "S", label: "S" },
-      { value: "M", label: "M" },
-      { value: "L", label: "L" },
-      { value: "XL", label: "XL" },
-    ],
-  },
-  { type: "text", name: "material", label: "Material (opcional)", placeholder: "Algodón, poliéster..." },
-  {
-    type: "select",
-    name: "genero",
-    label: "Género (opcional)",
-    options: [
-      { value: "", label: "Seleccione" },
-      { value: "hombre", label: "Hombre" },
-      { value: "mujer", label: "Mujer" },
-      { value: "unisex", label: "Unisex" },
-    ],
+    {
+    type: "number",
+    name: "offer",
+    label: "Oferta (%)",
+    placeholder: "Ej: 15.5",
+    step: "0.01",
+    min: "0",
   },
   {
-    type: "select",
-    name: "temporada",
-    label: "Temporada (opcional)",
-    options: [
-      { value: "", label: "Seleccione" },
-      { value: "verano", label: "Verano" },
-      { value: "invierno", label: "Invierno" },
-      { value: "todo", label: "Todo el año" },
-    ],
+    type: "number",
+    name: "unit_price",
+    label: "Precio Unitario",
+    placeholder: "Ej: 120",
+    step: "0.01",
+    min: "0",
   },
-  { type: "text", name: "sku", label: "SKU interno (opcional)", placeholder: "Código interno" },
-
-  { type: "button", label: "Añadir Producto", submit: true },
+  {
+    type: "multiselect",
+    name: "categories",
+    label: "Categorías",
+    options: categories.map((c) => ({ value: c.id, label: c.name })),
+  },
+  {
+    type: "multiselect",
+    name: "uniqueProducts",
+    label: "Productos Únicos Relacionados",
+    options: uniqueProducts.map((u) => ({ value: u.id, label: u.name })),
+  },
+  {
+    type: "urls",
+    name: "images",
+    label: "URLs de imágenes",
+  },
+  {
+    type: "button",
+    label: "Crear Producto",
+    submit: true,
+  },
 ];
 
-export const formElementsEdit = [
-  { type: "text", name: "nombre", label: "Nombre", placeholder: "Ej: Remera básica" },
-  { type: "text", name: "descripcion", label: "Descripción", placeholder: "Breve descripción" },
-  { type: "text", name: "color", label: "Color (hex o nombre)", placeholder: "#ffffff o Blanco" },
-  { type: "text", name: "precioUnitario", label: "Precio Unitario", placeholder: "0.00" },
-  { type: "text", name: "imagen", label: "URL de la Imagen", placeholder: "https://..." },
-  {
-    type: "select",
-    name: "categoria",
-    label: "Categoría",
-    options: [
-      { value: "", label: "Seleccione categoría" },
-      { value: "camisas", label: "Camisas" },
-      { value: "pantalones", label: "Pantalones" },
-      { value: "accesorios", label: "Accesorios" },
-    ],
-  },
-  { type: "divider" },
-  { type: "section", label: "Gestión avanzada" },
-  {
-    type: "select",
-    name: "talla",
-    label: "Talla (opcional)",
-    options: [
-      { value: "", label: "Seleccione talla" },
-      { value: "XS", label: "XS" },
-      { value: "S", label: "S" },
-      { value: "M", label: "M" },
-      { value: "L", label: "L" },
-      { value: "XL", label: "XL" },
-    ],
-  },
-  { type: "text", name: "material", label: "Material (opcional)", placeholder: "Algodón, poliéster..." },
-  {
-    type: "select",
-    name: "genero",
-    label: "Género (opcional)",
-    options: [
-      { value: "", label: "Seleccione" },
-      { value: "hombre", label: "Hombre" },
-      { value: "mujer", label: "Mujer" },
-      { value: "unisex", label: "Unisex" },
-    ],
-  },
-  {
-    type: "select",
-    name: "temporada",
-    label: "Temporada (opcional)",
-    options: [
-      { value: "", label: "Seleccione" },
-      { value: "verano", label: "Verano" },
-      { value: "invierno", label: "Invierno" },
-      { value: "todo", label: "Todo el año" },
-    ],
-  },
-  { type: "text", name: "sku", label: "SKU interno (opcional)", placeholder: "Código interno" },
-  { type: "button", label: "Guardar cambios", submit: true },
-];
+export const formElementsEdit = formElements;
 
 export const columns = [
   { key: "id", label: "ID" },
-  { key: "nombre", label: "Nombre" },
-  { key: "categoria", label: "Categoría" },
-  { key: "precioUnitario", label: "Precio" },
+  { key: "name", label: "Nombre" },
+  { key: "description", label: "Descripción" },
+  {key: "offer", label:"Oferta"},
+  {key: "unit_price", label:"Precio Unidad"},
   {
-    key: "imagen",
-    label: "Imagen",
-    render: (item) => (
-      <img
-        src={item.imagen}
-        alt={item.nombre}
-        style={{ width: 48, height: 48, objectFit: "cover", borderRadius: 4 }}
-      />
-    ),
+    key: "categories",
+    label: "Categorías",
+    render: (product) =>
+      product.categories?.length
+        ? product.categories.map((c) => c.name).join(", ")
+        : "—",
   },
   {
-    key: "oferta",
-    label: "Oferta",
+    key: "uniqueProducts",
+    label: "Productos únicos",
+    render: (product) =>
+      product.uniqueProducts?.length
+        ? product.uniqueProducts.map((p) => p.name).join(", ")
+        : "—",
+  },
+  {
+    key: "images",
+    label: "Imágenes",
+    render: (product) =>
+      product.images?.length ? (
+        <div style={{ display: "flex", gap: "6px", justifyContent: "center" }}>
+          {product.images.slice(0, 3).map((img, i) => (
+            <img
+              key={i}
+              src={img.url}
+              alt={`img-${i}`}
+              style={{
+                width: 40,
+                height: 40,
+                objectFit: "cover",
+                borderRadius: 6,
+                border: "1px solid #ccc",
+              }}
+            />
+          ))}
+        </div>
+      ) : (
+        "—"
+      ),
   },
 ];
 
-export const getActions = ({
-  setSelectedItem,
-  openModal,
-  openDeleteModal,
-  setItemToDelete,
-  openDetailsModal,
-}) =>
-  (items, setItems) => [
+export const getActions =
+  ({ setSelectedItem, openModal, openDeleteModal, setItemToDelete }) =>
+  () => [
     {
       label: "Editar",
       variant: "edit",
       onClick: (item) => {
-        setSelectedItem(item);
+        const normalized = {
+          ...item,
+          images:
+            item.images?.map((img) =>
+              typeof img === "string"
+                ? { url: img }
+                : { id: img.id, url: img.url }
+            ) || [],
+        };
+
+        setSelectedItem(normalized);
         openModal();
       },
     },
@@ -178,40 +131,4 @@ export const getActions = ({
         openDeleteModal();
       },
     },
-    {
-      label: "Ver Detalles",
-      variant: "view",
-      onClick: (item) => {
-        setSelectedItem(item);
-        openDetailsModal();
-      },
-    },
   ];
-
-
-
-export const getHandleSubmit = ({ showPopup }) => (values, { resetForm, items, setItems }) => {
-  try {
-    const nuevoItem = {
-      id: items.length + 1,
-      nombre: values.nombre,
-      descripcion: values.descripcion,
-      color: values.color,
-      precioUnitario: Number(values.precioUnitario),
-      imagen: values.imagen,
-      categoria: values.categoria,
-      oferta: values.oferta || "",
-      talla: values.talla || "",
-      material: values.material || "",
-      genero: values.genero || "",
-      temporada: values.temporada || "",
-      sku: values.sku || "",
-    };
-
-    setItems([...items, nuevoItem]);
-    showPopup("Producto añadido correctamente", "success");
-    resetForm();
-  } catch (err) {
-    showPopup("Error al añadir producto", "error");
-  }
-};
