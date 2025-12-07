@@ -1,0 +1,90 @@
+.cartDropdown {
+  position: absolute;
+  right: 1rem;
+  top: 60px;
+  width: 320px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  color: #111; /* 👈 color base para texto */
+  font-family: inherit;
+}
+
+.cartList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.cartItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.8rem;
+  color: #222; /* 👈 texto de cada ítem */
+}
+
+.cartImage {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  margin-right: 0.5rem;
+  border-radius: 4px;
+}
+
+.cartInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.cartInfo p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.subtotal {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.cartFooter {
+  margin-top: 1rem;
+  text-align: right;
+  color: #111;
+}
+
+.total {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.checkoutBtn {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background-color 0.2s ease;
+}
+
+.checkoutBtn:hover {
+  background-color: #0056b3;
+}
+
+.removeBtn {
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+  color: #c62828;
+  cursor: pointer;
+}

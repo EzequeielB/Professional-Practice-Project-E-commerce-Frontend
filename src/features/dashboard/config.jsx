@@ -77,37 +77,37 @@ export const columns = [
   },
 ];
 
-export const getActions = ({
-  setSelectedItem,
-  openModal,
-  openDeleteModal,
-  setItemToDelete,
-}) => (items, setItems) => [
-  {
-    label: "Editar",
-    variant: "edit",
-    onClick: (item) => {
-      setSelectedItem(item);
-      openModal();
-    },
-  },
-  {
-    label: "Eliminar",
-    variant: "delete",
-    onClick: (item) => {
-      setItemToDelete(item);
-      openDeleteModal();
-    },
-  },
-];
+export const getActions =
+  ({ setSelectedItem, openModal, openDeleteModal, setItemToDelete }) =>
+  (items, setItems) =>
+    [
+      {
+        label: "Editar",
+        variant: "edit",
+        onClick: (item) => {
+          setSelectedItem(item);
+          openModal();
+        },
+      },
+      {
+        label: "Eliminar",
+        variant: "delete",
+        onClick: (item) => {
+          setItemToDelete(item);
+          openDeleteModal();
+        },
+      },
+    ];
 
-export const getHandleSubmit = ({ showPopup }) => (values, { resetForm, items, setItems }) => {
-  const nuevoItem = {
-    id: items.length + 1,
-    ...values,
+export const getHandleSubmit =
+  ({ toast }) =>
+  (values, { resetForm, items, setItems }) => {
+    const nuevoItem = {
+      id: items.length + 1,
+      ...values,
+    };
+
+    setItems([...items, nuevoItem]);
+    toast.success("Categoría creada correctamente", "success");
+    resetForm();
   };
-
-  setItems([...items, nuevoItem]);
-  showPopup("Categoría creada correctamente", "success");
-  resetForm();
-};
