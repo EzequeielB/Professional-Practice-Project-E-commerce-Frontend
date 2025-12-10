@@ -1,28 +1,28 @@
-/* Tabla */
+
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 1rem;
-  font-size: 0.95rem;
+  margin-top: var(--space-16);
+  font-size: var(--font-size-sm);
+  font-family: var(--font-family-base);
 }
 
-th, td {
-  border: 1px solid #D8D8D8;
-  padding: 0.75rem;
+th,
+td {
+  border: 1px solid var(--color-gray-500);
+  padding: var(--space-12);
   text-align: left;
-  font-size: 0.95rem;
+  font-size: var(--font-size-sm);
   vertical-align: middle;
 }
 
 th {
-  background-color: #D9D9D9;
+  background-color: var(--color-gray-400);
 }
 
-
-/* Acciones */
 .acciones {
   display: flex;
-  gap: 0.75rem;
+  gap: var(--space-12);
   align-items: center;
   justify-content: flex-start;
 }
@@ -30,22 +30,25 @@ th {
 .acciones button {
   background: none;
   border: none;
-  padding: 0.2rem 0.4rem;
-  font-size: 0.85rem;
+  padding: var(--space-6) var(--space-10);
+  font-size: var(--font-size-xs);
   cursor: pointer;
-  line-height: 1;
+  line-height: var(--line-height-tight);
   box-sizing: content-box;
   width: auto;
+  color: var(--color-link);
+  transition: color var(--transition-fast), text-decoration var(--transition-fast);
 }
 
 .acciones .editar {
-  color: blue;
+  color: var(--color-primary);
 }
 
 .acciones .eliminar {
-  color: red;
+  color: var(--color-danger);
 }
 
 .acciones button:hover {
   text-decoration: underline;
+  color: var(--color-link-hover);
 }

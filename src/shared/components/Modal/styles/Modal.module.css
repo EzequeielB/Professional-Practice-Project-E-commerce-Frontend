@@ -8,70 +8,143 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; 
+  z-index: 1000;
 }
 
 .modalContainer {
   width: 500px;
-  min-height: 200px; 
-  border-radius: 12px;
-  background-color: white;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  max-height: 80vh;
+  min-height: 200px;
+  border-radius: var(--radius-8);
+  background-color: var(--color-bg);
+  box-shadow: var(--shadow-md);
   display: flex;
   flex-direction: column;
-  padding: 25px;
-  z-index: 1001; 
+  z-index: 1001;
 }
 
 .titleCloseBtn {
+  flex-shrink: 0;
   display: flex;
   justify-content: flex-end;
+  padding: var(--space-8);
+  border-bottom: 1px solid var(--color-border-soft);
 }
 
 .titleCloseBtn button {
   background-color: transparent;
   border: none;
-  font-size: 25px;
+  font-size: var(--font-size-xl);
   cursor: pointer;
 }
 
-.modalContainer .body {
+.modalContent {
   flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.2rem;
-  text-align: center;
+  overflow-y: auto;
+  padding: var(--space-16);
+  font-size: var(--font-size-base);
+  text-align: left;
 }
 
-.modalContainer .footer {
+.footer {
+  flex-shrink: 0;
   display: flex;
   justify-content: center;
-  align-items: center;
-  margin-top: 20px;
+  gap: var(--space-16);
+  padding: var(--space-8);
+  border-top: 1px solid var(--color-border-soft);
 }
 
-.modalContainer .footer button {
+.footer button {
   width: 150px;
   height: 45px;
-  margin: 10px;
   border: none;
-  background-color: cornflowerblue;
-  color: white;
-  border-radius: 8px;
-  font-size: 18px;
+  border-radius: var(--radius-8);
+  font-size: var(--font-size-sm);
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background-color var(--transition-medium);
 }
 
-.modalContainer .footer button:hover {
-  background-color: royalblue;
+
+.footer .confirmBtn {
+  background-color: var(--color-info);
+  color: var(--color-white);
+}
+
+.footer .confirmBtn:hover {
+  background-color: #0056b3;
 }
 
 #cancelBtn {
-  background-color: crimson;
+  background-color: var(--color-danger);
+  color: var(--color-white);
 }
 
 #cancelBtn:hover {
+  background-color: darkred;
+}
+
+
+.footer .neutralBtn {
+  background-color: var(--color-gray-600);
+  color: var(--color-black);
+}
+
+.footer .neutralBtn:hover {
+  background-color: var(--color-gray-700);
+}
+
+
+.detailsContainer {
+  padding: var(--space-16);
+}
+
+.title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-16);
+}
+
+.detailsContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.detailRow {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--color-border-soft);
+  padding: var(--space-4) 0;
+}
+
+
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-16);
+  margin-top: var(--space-16);
+}
+
+.cancel {
+  background-color: var(--color-gray-600);
+  border: none;
+  padding: var(--space-8) var(--space-16);
+  cursor: pointer;
+}
+
+.cancel:hover {
+  background-color: var(--color-gray-700);
+}
+
+.confirm {
+  background-color: var(--color-danger);
+  color: var(--color-white);
+  border: none;
+  padding: var(--space-8) var(--space-16);
+  cursor: pointer;
+}
+
+.confirm:hover {
   background-color: darkred;
 }

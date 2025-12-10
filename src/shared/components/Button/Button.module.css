@@ -1,26 +1,28 @@
 button {
-  background-color: #000000;
-  color: #ffffff;
+  background-color: var(--color-black);
+  color: var(--color-white);
   border: none;
   width: 200px;
   height: 40px;
-  font-size: 1rem;
-  border-radius: 3px;
+  font-size: var(--font-size-base);
+  border-radius: var(--radius-3);
   margin: 0 auto;
   display: block;
+  transition: background-color var(--transition-fast);
 }
 
 button:hover {
-  background-color: #333333;
+  background-color: var(--color-black-hover);
   cursor: pointer;
 }
 
 .linkButton {
   background-color: inherit;
   cursor: pointer;
-  color: #ffffff;
+  color: var(--color-white);
   width: auto;
   height: auto;
+  font-size: var(--font-size-base);
 }
 
 .linkButton:hover {

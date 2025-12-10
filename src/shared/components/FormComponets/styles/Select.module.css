@@ -1,8 +1,10 @@
 .selectInput {
-  font-size: 1rem;
+  font-size: var(--font-size-base);
   padding: 0.4rem;
-  border: 1px solid black;
-  border-radius: 3px;
+  border: 1px solid var(--color-black);
+  border-radius: var(--radius-3);
   width: 100%;
   box-sizing: border-box;
+  background-color: var(--color-white);
+  color: var(--color-text);
 }

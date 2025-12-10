@@ -1,24 +1,24 @@
 .menuGroup {
-  margin-bottom: 12px;
+  margin-bottom: var(--space-12);
 }
 
 .menuGroupHeader {
   display: flex;
   align-items: center;
   cursor: pointer;
-  padding: 10px 16px;
-  background-color: #fff;
-  font-weight: bold;
+  padding: var(--space-10) var(--space-16);
+  background-color: var(--color-bg);
+  font-weight: var(--font-weight-semibold);
   user-select: none;
-  transition: background 0.2s ease;
+  transition: background-color var(--transition-fast);
 }
 
 .menuGroupHeader:hover {
-  background-color: #ececec;
+  background-color: var(--color-gray-200);
 }
 
 .menuGroupIcon {
-  margin-right: 8px;
+  margin-right: var(--space-8);
 }
 
 .menuGroupArrow {
@@ -26,7 +26,7 @@
 }
 
 .menuGroupItems {
-  padding-left: 16px;
+  padding-left: var(--space-16);
 }
 
 .headerContainer {
@@ -34,18 +34,24 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-16);
 }
 
 .collapseBtn button {
-  color: #ffffff;
+  background-color: var(--color-primary);
+  color: var(--color-primary-contrast);
   border: none;
   width: 40px;
   height: 40px;
-  font-size: 1rem;
-  border-radius: 3px;
-  margin: 0;           
+  font-size: var(--font-size-base);
+  border-radius: var(--radius-3);
+  margin: 0;
   display: inline-block;
+  transition: filter var(--transition-fast);
+}
+
+.collapseBtn button:hover {
+  filter: brightness(0.9);
 }
 
 .sidebarContainer {
@@ -53,23 +59,23 @@
 }
 
 .sidebarTitle {
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-16);
 }
 
 .menuItem {
-  padding: 8px 16px;
+  padding: var(--space-8) var(--space-16);
   display: block;
-  color: #333;
+  color: var(--color-text);
   text-decoration: none;
-  transition: background 0.2s ease;
+  transition: background-color var(--transition-fast);
 }
 
 .menuItem:hover {
-  background-color: #f0f0f0;
+  background-color: var(--color-gray-200);
 }
 
 .active {
-  font-weight: bold;
-  background-color: #e0e0e0;
-  color: #000;
+  font-weight: var(--font-weight-semibold);
+  background-color: var(--color-gray-300);
+  color: var(--color-black);
 }

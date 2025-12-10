@@ -1,24 +1,24 @@
 .bannerIndicators {
   display: flex;
   justify-content: center;
-  gap: 10px;
-  margin-top: 16px;
+  gap: var(--space-10);
+  margin-top: var(--space-16);
 }
 
 .indicator {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background-color: #ccc;
+  background-color: var(--color-gray-600);
   cursor: pointer;
-  transition: transform 0.2s ease, background-color 0.2s ease;
+  transition: transform var(--transition-fast), background-color var(--transition-fast);
 }
 
 .indicator:hover {
   transform: scale(1.2);
-  background-color: #999;
+  background-color: var(--color-gray-700);
 }
 
 .activeIndicator {
-  background-color: #4caf50;
+  background-color: var(--color-success);
 }
