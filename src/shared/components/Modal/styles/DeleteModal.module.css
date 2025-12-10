@@ -1,21 +1,29 @@
 .modalActions {
   display: flex;
   justify-content: flex-end;
-  gap: 1rem;
-  margin-top: 1.5rem;
+  gap: var(--space-16);
+  margin-top: var(--space-24);
 }
 
 .cancel {
-  background-color: #ccc;
+  background-color: var(--color-gray-600);
   border: none;
-  padding: 0.5rem 1rem;
+  padding: var(--space-8) var(--space-16);
   cursor: pointer;
 }
 
+.cancel:hover {
+  background-color: var(--color-gray-700);
+}
+
 .confirm {
-  background-color: #e74c3c;
-  color: white;
+  background-color: var(--color-danger);
+  color: var(--color-white);
   border: none;
-  padding: 0.5rem 1rem;
+  padding: var(--space-8) var(--space-16);
   cursor: pointer;
+}
+
+.confirm:hover {
+  background-color: darkred;
 }

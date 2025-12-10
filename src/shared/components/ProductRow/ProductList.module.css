@@ -2,6 +2,6 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 24px;
-  padding: 20px;
+  gap: var(--space-24);
+  padding: var(--space-20);
 }

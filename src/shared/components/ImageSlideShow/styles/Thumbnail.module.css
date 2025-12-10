@@ -1,19 +1,19 @@
 .thumbnails {
   display: flex;
-  gap: 8px;
+  gap: var(--space-8);
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 12px;
+  margin-top: var(--space-12);
 }
 
 .thumbnail {
   width: 80px;
   height: 50px;
-  border-radius: 4px;
+  border-radius: var(--radius-4);
   object-fit: cover;
   cursor: pointer;
   border: 2px solid transparent;
-  transition: transform 0.2s ease, border 0.2s ease;
+  transition: transform var(--transition-fast), border var(--transition-fast);
 }
 
 .thumbnail:hover {
@@ -21,5 +21,5 @@
 }
 
 .activeThumbnail {
-  border: 2px solid #4caf50;
+  border: 2px solid var(--color-success);
 }

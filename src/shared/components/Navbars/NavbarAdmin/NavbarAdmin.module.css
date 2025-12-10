@@ -1,27 +1,28 @@
+
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #ffffff;
-  padding: 12px 24px;
-  border-bottom: 1px solid #ddd;
+  background-color: var(--color-white);
+  padding: var(--space-12) var(--space-24);
+  border-bottom: 1px solid var(--color-border);
   height: 64px;
 }
 
 .navbarLeft {
   display: flex;
-  gap: 16px;
+  gap: var(--space-16);
 }
 
 .navLink {
-  color: #333;
+  color: var(--color-text);
   text-decoration: none;
-  font-weight: 500;
-  transition: color 0.2s ease;
+  font-weight: var(--font-weight-medium);
+  transition: color var(--transition-fast);
 }
 
 .navLink:hover {
-  color: #007bff;
+  color: var(--color-primary);
 }
 
 .navbarRight {
@@ -31,48 +32,48 @@
 .userInfo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--space-12);
   cursor: pointer;
 }
 
 .username {
-  color: #333;
-  font-weight: 500;
+  color: var(--color-text);
+  font-weight: var(--font-weight-medium);
 }
 
 .avatar {
-  background-color: #007bff;
-  color: white;
+  background-color: var(--color-primary);
+  color: var(--color-white);
   width: 32px;
   height: 32px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: bold;
+  font-weight: var(--font-weight-bold, 700);
 }
 
 .dropdown {
   position: absolute;
   top: 48px;
   right: 0;
-  background-color: white;
-  border: 1px solid #ccc;
-  padding: 8px 12px;
-  border-radius: 4px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-600);
+  padding: var(--space-8) var(--space-12);
+  border-radius: var(--radius-4);
+  box-shadow: var(--shadow-xs);
 }
 
 .dropdown button {
   background: none;
   border: none;
-  color: #333;
+  color: var(--color-text);
   cursor: pointer;
-  font-size: 14px;
+  font-size: var(--font-size-xs);
 }
 
 .dropdown button:hover {
-  color: #007bff;
+  color: var(--color-primary);
 }
 
 .dashboard-layout {
@@ -83,8 +84,8 @@
 
 .sidebar-container {
   width: 260px;
-  background-color: #fff;
-  border-right: 1px solid #ddd;
+  background-color: var(--color-white);
+  border-right: 1px solid var(--color-border);
   overflow-y: auto;
 }
 
@@ -98,8 +99,7 @@
 
 .dashboard-content {
   flex: 1;
-  padding: 24px;
-  background-color: #f5f5f5;
+  padding: var(--space-24);
+  background-color: var(--color-gray-100);
   overflow-y: auto;
 }
-
