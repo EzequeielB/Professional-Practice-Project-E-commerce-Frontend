@@ -13,16 +13,15 @@ export const formElements = (brands = [], sizes = []) => [
     placeholder: "Ej: Negro",
   },
   {
-    type: "select",
+    type: "searchable-select",
     name: "id_brand",
     label: "Marca",
     options: [
-      { value: "", label: "Sin marca" },
       ...brands.map((b) => ({ value: b.id, label: b.name })),
     ],
   },
   {
-    type: "multiselect",
+    type: "searchable-multiselect",
     name: "size",
     label: "Tallas disponibles",
     options: sizes.map((s) => ({ value: s.id, label: s.size })),
@@ -71,7 +70,16 @@ export const getActions =
       label: "Editar",
       variant: "edit",
       onClick: (item) => {
-        setSelectedItem(item);
+        const normalized = {
+          ...item,
+          id_brand: item.brand?.id ?? "",
+          size: item.size?.map((s) => s.id) || [],
+          stock: {
+            count: item.stock?.count ?? 0,
+          },
+        };
+
+        setSelectedItem(normalized);
         openModal();
       },
     },
@@ -84,6 +92,7 @@ export const getActions =
       },
     },
   ];
+
 
 export const getHandleSubmit =
   ({ toast }) =>

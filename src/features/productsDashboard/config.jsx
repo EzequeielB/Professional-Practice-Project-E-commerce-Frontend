@@ -11,7 +11,7 @@ export const formElements = (categories = [], uniqueProducts = []) => [
     label: "Descripción",
     placeholder: "Ej: Zapatilla deportiva con cámara de aire",
   },
-    {
+  {
     type: "number",
     name: "offer",
     label: "Oferta (%)",
@@ -28,21 +28,21 @@ export const formElements = (categories = [], uniqueProducts = []) => [
     min: "0",
   },
   {
-    type: "multiselect",
+    type: "searchable-multiselect",
     name: "categories",
     label: "Categorías",
     options: categories.map((c) => ({ value: c.id, label: c.name })),
   },
   {
-    type: "multiselect",
+    type: "searchable-multiselect",
     name: "uniqueProducts",
     label: "Productos Únicos Relacionados",
     options: uniqueProducts.map((u) => ({ value: u.id, label: u.name })),
   },
   {
-    type: "urls",
+    type: "files",
     name: "images",
-    label: "URLs de imágenes",
+    label: "Imágenes del producto",
   },
   {
     type: "button",
@@ -51,14 +51,25 @@ export const formElements = (categories = [], uniqueProducts = []) => [
   },
 ];
 
-export const formElementsEdit = formElements;
+export const formElementsEdit = (categories = [], uniqueProducts = []) => {
+  const base = formElements(categories, uniqueProducts);
+
+  return [
+    ...base.slice(0, -1),
+    {
+      type: "button",
+      label: "Guardar Cambios",
+      submit: true,
+    },
+  ];
+};
 
 export const columns = [
   { key: "id", label: "ID" },
   { key: "name", label: "Nombre" },
   { key: "description", label: "Descripción" },
-  {key: "offer", label:"Oferta"},
-  {key: "unit_price", label:"Precio Unidad"},
+  { key: "offer", label: "Oferta" },
+  { key: "unit_price", label: "Precio Unidad" },
   {
     key: "categories",
     label: "Categorías",
@@ -104,31 +115,34 @@ export const columns = [
 
 export const getActions =
   ({ setSelectedItem, openModal, openDeleteModal, setItemToDelete }) =>
-  () => [
-    {
-      label: "Editar",
-      variant: "edit",
-      onClick: (item) => {
-        const normalized = {
-          ...item,
-          images:
-            item.images?.map((img) =>
-              typeof img === "string"
-                ? { url: img }
-                : { id: img.id, url: img.url }
-            ) || [],
-        };
+  () =>
+    [
+      {
+        label: "Editar",
+        variant: "edit",
+        onClick: (item) => {
+          const normalized = {
+            ...item,
+            categories: item.categories?.map((c) => c.id) || [],
+            uniqueProducts: item.uniqueProducts?.map((u) => u.id) || [],
+            images:
+              item.images?.map((img) =>
+                typeof img === "string"
+                  ? { url: img }
+                  : { id: img.id, url: img.url }
+              ) || [],
+          };
 
-        setSelectedItem(normalized);
-        openModal();
+          setSelectedItem(normalized);
+          openModal();
+        },
       },
-    },
-    {
-      label: "Eliminar",
-      variant: "delete",
-      onClick: (item) => {
-        setItemToDelete(item);
-        openDeleteModal();
+      {
+        label: "Eliminar",
+        variant: "delete",
+        onClick: (item) => {
+          setItemToDelete(item);
+          openDeleteModal();
+        },
       },
-    },
-  ];
+    ];

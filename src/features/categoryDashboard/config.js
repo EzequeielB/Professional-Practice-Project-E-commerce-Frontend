@@ -6,7 +6,7 @@ export const formElements = (categories = []) => [
     placeholder: "Ej: Remeras",
   },
   {
-    type: "select",
+    type: "searchable-select",
     name: "id_category_parent",
     label: "Categoría Padre (opcional)",
     options: [
@@ -32,7 +32,7 @@ export const formElementsEdit = (categories = []) => [
     placeholder: "Ej: Remeras",
   },
   {
-    type: "select",
+    type: "searchable-select",
     name: "id_category_parent",
     label: "Categoría Padre (opcional)",
     options: [
@@ -65,25 +65,30 @@ export const columns = [
 
 export const getActions =
   ({ setSelectedItem, openModal, openDeleteModal, setItemToDelete }) =>
-  () =>
-    [
-      {
-        label: "Editar",
-        variant: "edit",
-        onClick: (item) => {
-          setSelectedItem(item);
-          openModal();
-        },
+  () => [
+    {
+      label: "Editar",
+      variant: "edit",
+      onClick: (item) => {
+        const normalized = {
+          ...item,
+          id_category_parent: item.id_category_parent?.id ?? "",
+        };
+
+        setSelectedItem(normalized);
+        openModal();
       },
-      {
-        label: "Eliminar",
-        variant: "delete",
-        onClick: (item) => {
-          setItemToDelete(item);
-          openDeleteModal();
-        },
+    },
+    {
+      label: "Eliminar",
+      variant: "delete",
+      onClick: (item) => {
+        setItemToDelete(item);
+        openDeleteModal();
       },
-    ];
+    },
+  ];
+
 
 export const getHandleSubmit =
   ({ toast }) =>

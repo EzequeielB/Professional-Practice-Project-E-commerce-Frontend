@@ -1,8 +1,9 @@
 import InputField from "./InputField";
-import SelectField from "./SelectField";
 import FormButton from "./FormButton";
-import MultiSelectField from "./MultiSelectField";
 import UrlListField from "./UrlFieldList";
+import FileUploadField from "./FileUploadField";
+import SearchableMultiSelectField from "./SearchableMultiSelectField";
+import SearchableSingleSelectField from "./SearchableSingleSelectField";
 
 const FormElement = ({ element }) => {
   const { type, ...rest } = element;
@@ -16,11 +17,11 @@ const FormElement = ({ element }) => {
     case "textarea":
       return <InputField {...element} />;
 
-    case "select":
-      return <SelectField {...rest} />;
+    case "searchable-select":
+      return <SearchableSingleSelectField {...rest} />;
 
-    case "multiselect":
-      return <MultiSelectField {...rest} />;
+    case "searchable-multiselect":
+      return <SearchableMultiSelectField {...rest} />;
 
     case "button":
       return <FormButton {...rest} />;
@@ -28,6 +29,11 @@ const FormElement = ({ element }) => {
     case "urls":
       return (
         <UrlListField key={rest.name} name={rest.name} label={rest.label} />
+      );
+
+    case "files":
+      return (
+        <FileUploadField key={rest.name} name={rest.name} label={rest.label} />
       );
 
     default:

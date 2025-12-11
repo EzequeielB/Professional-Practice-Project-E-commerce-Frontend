@@ -20,4 +20,5 @@ export const validationSchema = Yup.object().shape({
     .of(Yup.number().typeError("Cada producto único debe ser un número válido"))
     .min(1, "Debes seleccionar al menos un producto único")
     .required("Selecciona al menos un producto único"),
+  images: Yup.array().min(1, "Debes subir al menos una imagen"),
 });

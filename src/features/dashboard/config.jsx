@@ -12,7 +12,7 @@ export const formElementsCreate = [
     placeholder: "https://...",
   },
   {
-    type: "select",
+    type: "searchable-select",
     name: "padre",
     label: "Categoría Padre",
     options: [
@@ -43,7 +43,7 @@ export const formElementsEdit = [
     placeholder: "https://...",
   },
   {
-    type: "select",
+    type: "searchable-select",
     name: "padre",
     label: "Categoría Padre",
     options: [

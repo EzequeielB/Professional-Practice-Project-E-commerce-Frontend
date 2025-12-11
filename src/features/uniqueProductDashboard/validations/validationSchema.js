@@ -10,7 +10,7 @@ export const validationSchema = Yup.object().shape({
     .required("El color es obligatorio"),
 
   id_brand: Yup.string()
-    .nullable(),
+    .required("La marca es obligatorio"),
 
   size: Yup.array()
     .of(Yup.string().trim().required("Cada talla debe ser un valor válido"))
