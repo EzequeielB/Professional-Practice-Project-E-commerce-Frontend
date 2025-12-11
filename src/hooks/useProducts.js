@@ -34,7 +34,13 @@ export function useProducts() {
 
   const create = async (payload) => {
     try {
-      const { data } = await API.post("/products/create", payload, authHeaders);
+      const { data } = await API.post("/products/create", payload, {
+        ...authHeaders,
+        headers: {
+          ...authHeaders.headers,
+          "Content-Type": "multipart/form-data",
+        },
+      });
       return data.product;
     } catch (err) {
       setError(err.response?.data?.error || "Error al crear producto");
@@ -44,7 +50,13 @@ export function useProducts() {
 
   const update = async (id, payload) => {
     try {
-      const { data } = await API.put(`/products/update/${id}`, payload, authHeaders);
+      const { data } = await API.put(`/products/update/${id}`, payload, {
+        ...authHeaders,
+        headers: {
+          ...authHeaders.headers,
+          "Content-Type": "multipart/form-data",
+        },
+      });
       return data.product;
     } catch (err) {
       setError(err.response?.data?.error || "Error al actualizar producto");

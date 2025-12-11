@@ -2,7 +2,7 @@ export const formElementsCreate = [
   { type: "text", name: "email", label: "Email", placeholder: "usuario@ejemplo.com" },
   { type: "text", name: "telefono", label: "Teléfono", placeholder: "+54 9 11 1234 5678" },
   {
-    type: "select",
+    type: "searchable-select",
     name: "rol",
     label: "Rol",
     options: [
@@ -19,7 +19,7 @@ export const formElementsEdit = [
   { type: "text", name: "email", label: "Email", placeholder: "usuario@ejemplo.com" },
   { type: "text", name: "telefono", label: "Teléfono", placeholder: "+54 9 11 1234 5678" },
   {
-    type: "select",
+    type: "searchable-select",
     name: "rol",
     label: "Rol",
     options: [

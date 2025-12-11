@@ -1,10 +1,49 @@
-.selectInput {
-  font-size: var(--font-size-base);
-  padding: 0.4rem;
-  border: 1px solid var(--color-black);
-  border-radius: var(--radius-3);
+.chipsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.chip {
+  background: #e0e0e0;
+  padding: 4px 8px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.removeChip {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.searchInput {
   width: 100%;
-  box-sizing: border-box;
-  background-color: var(--color-white);
-  color: var(--color-text);
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.dropdown {
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: white;
+  max-height: 150px;
+  overflow-y: auto;
+  list-style: none;
+  padding: 0;
+}
+
+.option {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.option:hover {
+  background: #f0f0f0;
 }

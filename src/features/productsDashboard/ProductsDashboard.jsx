@@ -49,50 +49,75 @@ const ProductsDashboard = () => {
     })();
   }, []);
 
-const handleCreate = async (values, { resetForm }) => {
-  const payload = {
-    ...values,
-    offer: Number(values.offer),
-    unit_price: Number(values.unit_price),
-    categories: values.categories.map((c) => Number(c)),
-    uniqueProducts: values.uniqueProducts.map((u) => Number(u)),
-    images: values.images.map((i) => i.url),
-  };
+  const handleCreate = async (values, { resetForm }) => {
+    const formData = new FormData();
 
+    formData.append("name", values.name);
+    formData.append("description", values.description);
+    formData.append("offer", Number(values.offer));
+    formData.append("unit_price", Number(values.unit_price));
 
-  const newProduct = await create(payload);
-  if (newProduct) {
-    setProducts((prev) => [...prev, newProduct]);
-    toast.success("Producto creado correctamente");
-    resetForm();
-  }
-};
-
-  
-const handleSaveEdit = async (updatedValues) => {
-  const { id, ...rest } = updatedValues;
-
-  const payload = {
-    ...rest,
-    offer: Number(rest.offer),
-    unit_price: Number(rest.unit_price),
-    categories: rest.categories.map((c) => Number(c)),
-    uniqueProducts: rest.uniqueProducts.map((u) => Number(u)),
-    images: rest.images.map((i) => i.url),
-  };
-
-
-
-  const updated = await update(selectedItem.id, payload);
-  if (updated) {
-    setProducts((prev) =>
-      prev.map((p) => (p.id === selectedItem.id ? updated : p))
+    values.categories.forEach((c) => formData.append("categories", Number(c)));
+    values.uniqueProducts.forEach((u) =>
+      formData.append("uniqueProducts", Number(u))
     );
-    toast.success("Producto editado correctamente");
-    closeEditModal();
-  }
-};
 
+    values.images.forEach((file) => {
+      formData.append("images", file);
+    });
+
+    console.log("FormData:", formData);
+
+    const newProduct = await create(formData);
+    if (newProduct) {
+      setProducts((prev) => [...prev, newProduct]);
+      toast.success("Producto creado correctamente");
+      resetForm();
+    }
+  };
+
+  const handleSaveEdit = async (updatedValues) => {
+    const { id, ...rest } = updatedValues;
+
+    const formData = new FormData();
+    formData.append("name", rest.name);
+    formData.append("description", rest.description);
+    formData.append("offer", Number(rest.offer));
+    formData.append("unit_price", Number(rest.unit_price));
+
+    rest.categories.forEach((c) => formData.append("categories", Number(c)));
+    rest.uniqueProducts.forEach((u) =>
+      formData.append("uniqueProducts", Number(u))
+    );
+
+    if (Array.isArray(rest.images)) {
+      rest.images.forEach((file) => {
+        if (file instanceof File) {
+          formData.append("images", file);
+        }
+      });
+    }
+
+    if (rest.keepImageIds) {
+      rest.keepImageIds.forEach((id) => formData.append("keepImageIds", id));
+    }
+    if (rest.removeImageIds) {
+      rest.removeImageIds.forEach((id) =>
+        formData.append("removeImageIds", id)
+      );
+    }
+
+    console.log("UPDATE FORM DATA:", formData)
+
+    const updated = await update(selectedItem.id, formData);
+    if (updated) {
+      setProducts((prev) =>
+        prev.map((p) => (p.id === selectedItem.id ? updated : p))
+      );
+      toast.success("Producto editado correctamente");
+      closeEditModal();
+    }
+  };
 
   const handleConfirmDelete = async () => {
     const deleted = await remove(itemToDelete.id);
